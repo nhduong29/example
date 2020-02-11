@@ -1,6 +1,5 @@
-body {
-    padding-top: 40px;
-    padding-bottom: 40px;
+.container {
+    padding-top: 80px;
 }
 
 .form-signin {
@@ -52,4 +51,12 @@ body {
 
 .avatar .decs .name{
 	margin-top: 1rem;
+}
+
+.input-group .bootstrap-select.form-control .dropdown-toggle {
+    border: 1px solid #ced4da;
+}
+
+form .input-group-text {
+	color: #007bff;
 }

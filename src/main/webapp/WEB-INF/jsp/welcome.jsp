@@ -8,23 +8,43 @@
 <head>
     <meta charset="utf-8">
     <title>Update your Information</title>
-    <c:url value="/css/bootstrap.min.css" var="bootstrapCss" />
-    <link href="${bootstrapCss}" rel="stylesheet">
     
-    <c:url value="/vendors/fontawesome-free-5.12.1-web/css/all.css" var="fontawesomeCss" />
-    <link href="${fontawesomeCss}" rel="stylesheet">
-    
-    <c:url value="/css/common.css" var="commonCss" />
-	<link href="${commonCss}" rel="stylesheet" />
+    <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
+    <link href="<c:url value="/vendors/fontawesome-free-5.12.1-web/css/all.css"/>" rel="stylesheet">
+    <link rel="stylesheet" href="<c:url value="/vendors/bootstrap-select/css/bootstrap-select.min.css"/>">
+	<link href="<c:url value="/css/common.css"/>" rel="stylesheet" />
 </head>
 <body>
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	  <a class="navbar-brand" href="#">
+		<img src="<c:url value="/img/update.svg"/>" width="30" height="30" class="d-inline-block align-top" alt="">
+	</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item active">
+	        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/login">Login</a>
+	      </li>
+	    </ul>
+	  </div>
+	</nav>
   <div class="container">
-    <c:if test="${pageContext.request.userPrincipal.name != null}">
+  	<c:if test="${error !=null}">
+  		<h3>Please login first</h3>
+  		
+  	</c:if>
+    <c:if test="${error ==null}">
     <div class="card bg-white card-form shadow  mx-auto">
     	<article class="card-body">
 	    	<h4 class="card-title mt-3 text-center">Your Informations</h4>
 	    	<div class="avatar text-center">	    		
-		    	<img src="<c:url value="/img/avatar.svg"/>" alt="your avatar" class="img-thumbnail rounded-circle" width="100">
+		    	<img src="<c:url value="/img/man.svg"/>" alt="your avatar" class="img-thumbnail rounded-circle" width="100">
 		    	<div class="decs">
 		    		<p class="name font-weight-bold">${user.name}</p>
 		    		<p class="email">${user.email}</p>		    		
@@ -34,43 +54,40 @@
 				<spring:bind path="username">
 					<form:input readonly="true" type="hidden" path="username" class="form-control"  id="username" placeholder="Username"></form:input>
 				</spring:bind>
-				<spring:bind path="mobilephone">
-					<div class="form-group ">
-						<label for="mobilephone">Mobile Phone Number</label>
-						<div class="input-group mb-2">
-					        <div class="input-group-prepend">
-					          <div class="input-group-text"><i class="fas fa-mobile-alt"></i></div>
-					        </div>
-							<form:input type="number" path="mobilephone" class="form-control"  id="mobilephone" placeholder="Mobile Phone"></form:input>
-					     </div>
+				<div class="row">
+					<div class="col-7">
+						<spring:bind path="mobilephone">
+							<div class="form-group ">
+								<label for="mobilephone">Mobile Phone Number</label>
+								<div class="input-group mb-2">
+							        <div class="input-group-prepend">
+							          <div class="input-group-text"><i class="fa fa-phone"></i></div>
+							        </div>
+									<form:input type="number" path="mobilephone" class="form-control"  id="mobilephone" placeholder="Mobile Phone"></form:input>
+							     </div>
+							</div>
+						</spring:bind>
 					</div>
-				</spring:bind>
-				<div class="form-group input-group">
-					<label for="mobilephone">Global Phone Number</label>
-					<div class=" input-group">						
-				    	<div class="input-group-prepend">
-						    <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
-						</div>
-						<select class="custom-select" style="max-width: 80px;">
-						    <option selected="true">+971</option>
-						    <option value="1">+60</option>
-						    <option value="2">+84</option>
-						    <option value="3">+01</option>
-						</select>
-				    	<input name="" class="form-control" placeholder="Phone number" type="number">
+					<div class="col-5">
+						<spring:bind path="mobilemodel">
+							<div class="form-group">
+								<label for="mobilephone">Mobile Model</label>
+								<div class=" input-group">						
+							    	<div class="input-group-prepend">
+									    <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
+									</div>
+									<form:select class="form-control" path="mobilemodel">
+										<form:option value="Iphone"/>
+										<form:option value="Android"/>
+										<form:option value="Windows phone"/>
+										<form:option value="Other"/>
+									</form:select>
+								</div>
+							</div>
+						</spring:bind>
 					</div>
-			    </div>
-				<spring:bind path="telephone">
-					<div class="form-group ">
-						<label for="telephone">Telephone Number</label> 
-						<div class="input-group mb-2">
-					        <div class="input-group-prepend">
-					          <div class="input-group-text"><i class="fas fa-phone"></i></div>
-					        </div>
-							<form:input type="number" path="telephone" class="form-control"  id="telephone" placeholder="Telephone"></form:input>
-					     </div>
-					</div>
-				</spring:bind><spring:bind path="address">
+				</div>
+				<spring:bind path="address">
 					<div class="form-group ">
 						<label for="address">Address</label> 
 						<div class="input-group mb-2">
@@ -82,7 +99,7 @@
 					</div>
 				</spring:bind>
 				<div class="text-center">
-					<button id="submit" type="submit" class="btn btn-lg btn-primary btn-block submit" >Submit</button>				
+					<button id="submit" type="submit" class="btn btn-lg btn-primary btn-block submit" >Save</button>				
 				</div>
 				
 				<c:if test="${message != null}">
@@ -106,10 +123,9 @@
         
     </c:if>
   </div>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
- <c:url value="/js/bootstrap.min.js" var="bootstrapJs" />
- <script src="${bootstrapJs}"></script>
- <c:url value="/js/main.js" var="mainJs" />
-  <script src="${mainJs}"></script>
+ <script src="<c:url value="/vendors/jquery/jquery.min.js" />"></script>
+ <script src="<c:url value="/js/bootstrap.bundle.min.js"/>"></script>
+ <script src="<c:url value="/vendors/bootstrap-select/js/bootstrap-select.min.js" />"></script>
+ <script src="<c:url value="/js/main.js"/>"></script>
 </body>
 </html>

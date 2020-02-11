@@ -41,6 +41,7 @@ public class User {
 	private String address;
 	private String telephone;
 	private String mobilephone;
+	private String mobilemodel;
 
 	public User(Long id, @NotBlank @Size(max = 40) String name, @NotBlank @Size(max = 20) String username,
 			@NotBlank @Size(max = 40) @Email String email, @NotBlank @Size(max = 200) String password) {
@@ -128,6 +129,14 @@ public class User {
 
 	public void setMobilephone(String mobilephone) {
 		this.mobilephone = mobilephone;
+	}
+
+	public String getMobilemodel() {
+		return mobilemodel;
+	}
+
+	public void setMobilemodel(String mobileModel) {
+		this.mobilemodel = mobileModel;
 	}
 
 }

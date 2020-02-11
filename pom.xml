@@ -93,6 +93,7 @@
 			</exclusions>
 		</dependency>
 		
+		<!-- LDAP -->
 		<dependency>
 	      <groupId>com.unboundid</groupId>
 	      <artifactId>unboundid-ldapsdk</artifactId>
@@ -106,6 +107,12 @@
 		<dependency>
 		    <groupId>org.springframework.ldap</groupId>
 		    <artifactId>spring-ldap-core</artifactId>
+		</dependency>
+		
+		<!-- gson -->
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
 		</dependency>
 			    
 	</dependencies>
