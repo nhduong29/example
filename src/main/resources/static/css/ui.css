@@ -1,0 +1,98 @@
+.limiter {
+    width: 100%;
+    margin: 0 auto
+}
+
+.container-dn-form {
+    width: 100%;
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    /* background-image: linear-gradient(to right top, #fde9f1, #f6e4f1, #ecdff1, #e0dbf1, #d2d8f0, #c8d4ef, #bed1ed, #b3ceeb, #abc9eb, #a3c5ea, #9cc0ea, #94bbe9); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.wrapper {
+    width: 960px;
+    background: #fff;
+    border-radius: 2px;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.banner, .form{
+	padding:60px 40px;
+}
+
+.banner{
+	width: 60%;
+	background-position: center center;
+	display: flex;
+	flex-direction:column;
+}
+.left-wrapper{
+	display: flex;
+	flex-direction:column;
+}
+
+.banner .center{
+	flex:1;
+	align-self: center;
+	padding: 30px 0;
+}
+
+.left-wrapper .center{
+	flex:1;
+	padding: 30px 0;
+}
+
+.banner .bottom{
+}
+
+.banner h4, .banner p{
+	color: white;
+}
+
+.bottom a{
+	color: white;
+}
+
+.bottom a:hover, .bottom a:focus, .bottom a:active{
+	color: #007bff;
+}
+
+
+
+
+.form{
+	width: 40%;
+	justify-content:center;
+	align-items:center;
+}
+
+.input-group .bootstrap-select.form-control .dropdown-toggle {
+    border: 1px solid #ced4da;
+}
+
+
+.avatar .decs p{
+	margin: 0;
+	
+}
+
+.avatar .decs .name{
+	margin-top: 1rem;
+}
