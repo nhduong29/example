@@ -63,9 +63,9 @@ public class UserController {
 			model.addAttribute("message", "You have been updated successfully.");
 
 			// Call Rest Consume
-			final String uri = "http://localhost:8080/spring-boot-web-jsp-1.0/test";
-			FindUserRequest findUserRequest = new FindUserRequest(true, "", "userid1234", "storeId321", "segmentId789",
-					"1,2,3");
+			//final String uri = "http://localhost:8080/spring-boot-web-jsp-1.0/test";
+			final String uri = "https://qasso.averis.biz/am5/rest/query/user/findById";
+			FindUserRequest findUserRequest = new FindUserRequest(true, "", "testuser", "", "","1,2,3");
 			RestTemplate restTemplate = new RestTemplate();
 			DuongResponse data = restTemplate.postForObject(uri, findUserRequest, DuongResponse.class);
 

@@ -21,7 +21,7 @@
   	</c:if>
     <c:if test="${error ==null}">
     	<div class="limiter">
-			<div class="container-dn-form" style="background-image: url('<c:url value="/img/bg.png"/>');">
+			<div class="container-dn-form" style="background-image: url('<c:url value="/img/bg.jpg"/>');">
 				<div class="wrapper shadow">
 					
 					<div class="banner" style="background-image: url('<c:url value="/img/form.jpg"/>');">
