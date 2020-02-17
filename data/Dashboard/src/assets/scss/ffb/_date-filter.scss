@@ -1,0 +1,41 @@
+.date-filter{
+    background: $bg-secondary;
+    border-radius: 5px;
+    .rdtPicker{
+        min-width: 290px !important;
+    }
+    .nav-tabs{
+        border-bottom: none;
+        justify-content:space-between;
+        .nav-item{
+            flex-grow: 1;
+            align-self: center;
+            .nav-link{
+                text-align: center;
+                padding-left: 10px;
+                padding-right: 10px;
+                color: #fff;
+                border: none;
+                &.active{
+                    background: $active-color;
+                    border: none;
+                    &.mid{
+                        border-radius: 0;
+                    }
+                }
+                &:hover{
+                    border: none;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    .tab-content{
+        padding: 20px;
+        .tab-pane{
+            .form-group{
+                margin-bottom: 3px !important;
+            }
+        }
+    }
+}
