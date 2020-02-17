@@ -5,9 +5,9 @@ import classNames from "classnames";
 class KPICard extends React.Component{
     render() {
         let stateClassName = classNames('card-state',{
-            'text-success' : this.props.positive == true
+            'text-success' : this.props.positive === true
         }, {
-            'text-warning' : this.props.positive == false
+            'text-warning' : this.props.positive === false
         })
         return (
             <>

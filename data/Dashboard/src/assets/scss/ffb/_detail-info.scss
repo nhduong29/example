@@ -1,0 +1,31 @@
+.detail-info{
+    .card{
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        .card-header{
+            .nav{
+                justify-content: flex-end;
+                .nav-item{
+                    flex: none;
+                    .nav-link{
+                        padding: 5px 15px;
+                        box-shadow: none;
+                        color: $gray-700;
+                        &.active, &:hover{
+                            background-color: $primary-bg-color-active;
+                            color: $primary-color-ffb;
+                        }
+                    }
+                }
+            }
+        }
+        .card-body{
+            .tab-content{
+                .tab-pane{
+                    .MuiPaper-root{
+                        box-shadow: none;
+                    }
+                }
+            }
+        }
+    }
+}
