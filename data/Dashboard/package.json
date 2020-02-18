@@ -23,9 +23,12 @@
     "not op_mini all"
   ],
   "dependencies": {
+    "@material-ui/core": "^4.9.3",
+    "@material-ui/icons": "^4.9.1",
     "chart.js": "2.7.3",
     "classnames": "^2.2.6",
     "jquery": "^3.4.1",
+    "material-table": "^1.57.2",
     "moment": "2.24.0",
     "node-sass": "4.13.1",
     "nouislider": "13.1.1",

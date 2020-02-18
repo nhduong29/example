@@ -32,7 +32,7 @@ class FilterItem extends React.Component{
         return(
             <div className="filter-item">
                 <FormGroup>
-                    <Label for="exampleEmail"><i className="ni ni-atom"></i> {this.props.title}</Label>
+                    <Label for="exampleEmail">{this.props.title}</Label>
                     <div className="filter-select-wrapper">
                         <ReactMultiSelectCheckboxes 
                             options={options}

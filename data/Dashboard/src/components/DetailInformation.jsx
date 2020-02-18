@@ -12,98 +12,76 @@ class DetailInformation extends React.Component{
         tabs: 2
     };
     exampleColumn = [
-        { title: 'Adı', field: 'name' },
-        { title: 'Abc', field: 'abc' },
-        { title: 'Soyadı', field: 'surname' },
-        { title: 'Cinsiyet', field: 'sex' },
-        { title: 'Tipi', field: 'type', removable: false },
-        { title: 'Doğum Yılı', field: 'birthYear', type: 'numeric' },
-        {
-          title: 'Doğum Yeri',
-          field: 'birthCity',
-          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-        },
+        { title: 'Region', field: 'region' },
+        { title: 'Mill', field: 'mill' },
+        { title: 'Supplier Name', field: 'supplier' },
+        { title: '1', field: 'd1', type: 'numeric' },
+        { title: '2', field: 'd2', type: 'numeric'},
+        { title: '3', field: 'd3', type: 'numeric' },
+        { title: '4', field: 'd4',type: 'numeric' },
+        { title: '5', field: 'd5', type: 'numeric'},
+        { title: '6', field: 'd6', type: 'numeric' },
+        { title: '7', field: 'd7', type: 'numeric' },
+        { title: '8', field: 'd8', type: 'numeric'},
+        { title: '9', field: 'd9', type: 'numeric' },
+        { title: '10', field: 'd10',type: 'numeric' },
+        { title: '11', field: 'd11', type: 'numeric'},
+        { title: '12', field: 'd12', type: 'numeric' }
       ];
     exampleData = [
         {
           id: 1,
-          name: 'a',
-          surname: 'Baran',
-          birthYear: 1987,
-          birthCity: 63,
-          sex: 'Male',
-          type: 'adult',
+          region: 'RO-1',
         },
         {
           id: 2,
-          name: 'b',
-          surname: 'Baran',
-          birthYear: 1987,
-          birthCity: 34,
-          sex: 'Female',
-          type: 'adult',
+          mill: "PAN",
           parentId: 1,
         },
         {
-          id: 3,
-          name: 'c',
-          surname: 'Baran',
-          birthYear: 1987,
-          birthCity: 34,
-          sex: 'Female',
-          type: 'child',
-          parentId: 1,
+            id: 3,
+            mill: "PGD",
+            parentId: 1,
         },
         {
-          id: 4,
-          name: 'd',
-          surname: 'Baran',
-          birthYear: 1987,
-          birthCity: 34,
-          sex: 'Female',
-          type: 'child',
-          parentId: 3,
+            id: 4,
+            supplier: "supplier 1",
+            parentId: 2,
+            d1:12, d2:54, d3:20, d4:23, d5:45, d6:145452, d7:112, d8:235, d9:52, d10:112, d11:1254, d12:65
         },
         {
-          id: 5,
-          name: 'e',
-          surname: 'Baran',
-          birthYear: 1987,
-          birthCity: 34,
-          sex: 'Female',
-          type: 'child',
-        },
-        {
-          id: 6,
-          name: 'f',
-          surname: 'Baran',
-          birthYear: 1987,
-          birthCity: 34,
-          sex: 'Female',
-          type: 'child',
-          parentId: 5,
+            id: 6,
+            supplier: "supplier 2",
+            parentId: 2,
+            d1:12, d2:54, d3:20, d4:23, d5:23, d6:34, d7:112, d8:235, d9:52, d10:112, d11:1254, d12:65
         },
         {
             id: 7,
-            name: 'duonggggggg',
-            surname: 'Nguyennnnn',
-            birthYear: 1991,
-            birthCity: 20,
-            sex: 'Mmale',
-            type: 'child',
-            abc : "haha",
-            parentId: 6,
-          },
-          {
+            supplier: "supplier a",
+            parentId: 3,
+            d1:34, d2:879, d3:23423, d4:3463, d5:345, d6:56, d7:112, d8:235, d9:52, d10:112, d11:1254, d12:65
+        },
+        {
             id: 8,
-            name: 'dsdfsdf',
-            surname: 'Nguyedsfsdfsdfnnnnn',
-            birthYear: 1991,
-            birthCity: 20,
-            sex: 'Mmale',
-            type: 'child',
-            parentId: 7,
-          }
+            supplier: "supplier b",
+            parentId: 3,
+            d1:343, d2:343, d3:232, d4:23323, d5:232, d6:23, d7:112, d8:235, d9:52, d10:112, d11:1254, d12:65
+        },
+        {
+            id: 9,
+            region: 'RO-2',
+          },
+        {
+            id: 10,
+            mill: "PAN XYZ",
+            parentId: 9,
+        },
+        {
+            id: 11,
+            supplier: "supplier x",
+            parentId: 9,
+            d1:343, d2:343, d3:232, d4:23323, d5:232, d6:23, d7:112, d8:235, d9:52, d10:112, d11:1254, d12:65
+        },
       ];
     toggleNavs = (e, state, index) => {
         e.preventDefault();
@@ -180,10 +158,26 @@ class DetailInformation extends React.Component{
                                 chart here
                             </TabPane>
                             <TabPane tabId="tabs2">
-                                    <MaterialTable parentChildData={(row, rows) => rows.find(a => a.id === row.parentId)}
+                                    {/* <MaterialTable parentChildData={(row, rows) => rows.find(a => a.id === row.parentId)}
                                         columns={this.exampleColumn}
                                         data={this.exampleData}
-                                    />
+                                        options={{
+                                            draggable : false,
+                                            showTitle : false,
+                                        }}
+                                    /> */}
+
+                                    <div className="dark">
+                                        <MaterialTable parentChildData={(row, rows) => rows.find(a => a.id === row.parentId)}
+                                            columns={this.exampleColumn}
+                                            data={this.exampleData}
+                                            options={{
+                                                draggable : false,
+                                                showTitle : false,
+                                                sorting: false
+                                            }}
+                                        />
+                                    </div>
                             </TabPane>
                             <TabPane tabId="tabs3">
                                 history table here

@@ -23,6 +23,142 @@
                 .tab-pane{
                     .MuiPaper-root{
                         box-shadow: none;
+                        border: 1px solid #e6ecf1;
+                        padding: 1.25rem;
+                        background-color: #f9fbfc;
+                        .MuiTableRow-head{
+                            .MuiTableCell-head{
+                                background-color: #f9fbfc;
+                                color: #353157;
+                                padding-top: .75rem;
+                                padding-bottom: .75rem;
+                                text-transform: uppercase;
+                                letter-spacing: 1px;
+                                border: none;
+                            }
+                        }
+                        .MuiTableBody-root{
+                            .MuiTableRow-root{
+                                color: $bg-secondary;
+                                &[level="0"]{
+                                    background-color: #ebedff;
+                                    color: #5766f3;
+                                    .MuiTableCell-root{
+                                        font-weight: 500;
+                                    }
+                                }
+                                &[level="1"]{
+                                    color: #001269;
+                                    font-weight: 500;
+                                    .MuiTableCell-root{
+                                        font-weight: 500;
+                                    }
+                                }
+                                &:not([level]){
+                                    height: 1px !important;
+                                }
+                                .MuiTableCell-root{
+                                    border-color: #e8eaf0;
+                                    .MuiIconButton-root{
+                                        padding: 8px;
+                                    }
+                                }
+                            }
+                        }
+                        .MuiTableFooter-root{
+                            .MuiTableRow-footer{
+                                .MuiTablePagination-root{
+                                    border: none;
+                                }
+                            }
+                        }
+                    }
+                }
+                .dark{
+                    .MuiPaper-root{
+                        .MuiToolbar-root{
+                            padding-right: 1.25rem;
+                            .MTableToolbar-searchField-38{
+
+                                .MuiInputBase-root{
+                                    color: #fff;
+                                    &:before{
+                                        border-color: #445182;
+                                    }
+                                    .MuiIconButton-root{
+                                        color: #fff;
+                                        padding: 0;
+                                    }
+                                }
+                            }
+                            &.MuiTablePagination-toolbar{
+                                color: #fff;
+                                .MuiSelect-icon{
+                                    color: #fff;
+                                }
+                                .MuiIconButton-root{
+                                    color: #fff;
+                                }
+                                .MuiTypography-caption{
+                                    color: #fff;
+                                }
+                            }
+                        }
+                        box-shadow: none;
+                        padding: 1.25rem 0;
+                        background-color: #1E2742;
+                        color: #4d7bca;
+                        .MuiTableRow-head{
+                            .MuiTableCell-head{
+                                background-color: transparent;
+                                color: #fff;
+                                padding-top: .75rem;
+                                padding-bottom: .75rem;
+                                text-transform: uppercase;
+                                letter-spacing: 1px;
+                                border: none;
+                                .MuiButtonBase-root:hover{
+                                    color: #4d7bca;
+                                }
+                            }
+                        }
+                        .MuiTableBody-root{
+                            .MuiTableRow-root{
+                                color: #fff;
+                                &[level="0"]{
+                                    background-color: #324068;
+                                    color: #11D0BF;
+                                    .MuiTableCell-root{
+                                        font-weight: 500;
+                                    }
+                                }
+                                &[level="1"]{
+                                    color: #6788F1;
+                                    font-weight: 500;
+                                    .MuiTableCell-root{
+                                        font-weight: 500;
+                                    }
+                                }
+                                &:not([level]){
+                                    height: 1px !important;
+                                }
+                                .MuiTableCell-root{
+                                    border-color: #464f6d;
+                                    .MuiIconButton-root{
+                                        padding: 8px;
+                                        color: #fff;
+                                    }
+                                }
+                                background-color: #2B375E;
+                            }
+                        }
+                        .MuiTableFooter-root{
+                            .MuiTableRow-footer{
+                                .MuiTablePagination-root{
+                                    border: none;
+                                }
+                            }
+                        }
                     }
                 }
             }
