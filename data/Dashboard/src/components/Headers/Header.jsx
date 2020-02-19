@@ -27,50 +27,47 @@ class Header extends React.Component {
         <div className="header">
           <Container fluid>
             <div className="header-body">
-              <div className="row seven-cols kpis">
-                <div className="col-md-1">
+              <div className="flex-grid kpis">
+                <div className="col">
                   <KPICard title="Purchase Price (IDR/Kg)" value="530,102" positive={true} state="3.47%" info="Since last month" />
                 </div>
-                <div className="col-md-1">
+                <div className="col">
                   <KPICard title="FFB Volume(MT)" value="530,102" positive={true} state="3.47%" info="Since last month" />
                 </div>
-                <div className="col-md-1">
+                <div className="col">
                   <KPICard title="Sortasi(%)" value="530,102" positive={true} state="3.47%" info="Since last month" />
                 </div>
-                <div className="col-md-1">
+                <div className="col">
                   <KPICard title="Utilization Factor(%)" value="530,102" positive={true} state="3.47%" info="Since last month" />
                 </div>
-                <div className="col-md-1">
+                <div className="col">
                   <KPICard title="ORE(%)" value="530,102" positive={true} state="3.47%" info="Since last month" />
                 </div>
-                <div className="col-md-1">
+                <div className="col">
                   <KPICard title="CPO Price(IDR/Kg)" value="530,102" positive={true} state="3.47%" info="Since last month" />
                 </div>
-                <div className="col-md-1">
+                <div className="col">
                   <KPICard title="CPO Volume(MT)" value="530,102" positive={true} state="3.47%" info="Since last month" />
                 </div>
-              </div>
-
-              <div className="row seven-cols kpis">
-                <div className="col-md-1">
+                <div className="col">
                   <KPICard title="Gross Margin(IDR/Kg FFB)" value="530,102" positive={true} state="3.47%" info="Since last month" />
                 </div>
-                <div className="col-md-1">
+                <div className="col">
                   <KPICard title="Net Margin(IDR/Kg FFB)" value="530,102" positive={true} state="3.47%" info="Since last month" />
                 </div>
-                <div className="col-md-1">
+                <div className="col">
                   <KPICard title="Palm Shell(IDR/Kg FFB)" value="530,102" positive={true} state="3.47%" info="Since last month" />
                 </div>
-                <div className="col-md-1">
+                <div className="col">
                   <KPICard title="Purchase Price (IDR/Kg)" value="530,102" positive={true} state="3.47%" info="Since last month" />
                 </div>
-                <div className="col-md-1">
+                <div className="col">
                   <KPICard title="KIR(%)" value="530,102" positive={true} state="3.47%" info="Since last month" />
                 </div>
-                <div className="col-md-1">
+                <div className="col">
                   <KPICard title="PR Price(IDR/Kg)" value="530,102" positive={true} state="3.47%" info="Since last month" />
                 </div>
-                <div className="col-md-1">
+                <div className="col">
                   <KPICard title="Kenel Volume(MT)" value="530,102" positive={true} state="3.47%" info="Since last month" />
                 </div>
               </div>

@@ -1,6 +1,12 @@
 .date-filter{
     background: $bg-secondary;
     border-radius: 5px;
+    .rdt{
+        input.form-control{
+            padding: 0.5rem;
+            height: auto;
+        }
+    }
     .rdtPicker{
         min-width: 290px !important;
     }

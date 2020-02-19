@@ -11,10 +11,19 @@ class DateFilter extends React.Component{
     constructor(){
         super();
         this.state = {
-            activeTab : 'day'
+            activeTab : 'day',
+            selectedDate: new Date()
         };
         this.isFocusDatePicker = false;
     }
+
+    onSelectDate = (date) =>{
+        this.setState({
+            selectedDate: date
+        })
+        this.props.handleSelectedDate(date);
+    }
+
     toggle = tab => {
         if(this.state.activeTab !== tab){
             this.setState({
@@ -63,6 +72,7 @@ class DateFilter extends React.Component{
                                 closeOnSelect={true}
                                 onFocus={this.toggleDatePicker}
                                 onBlur={this.toggleDatePicker}
+                                onChange={this.onSelectDate}
                                 timeFormat={false}
                                 dateFormat="DD/MM/YYYY"
                                 defaultValue={new Date()}
@@ -82,6 +92,7 @@ class DateFilter extends React.Component{
                                 closeOnSelect={true}
                                 onFocus={this.toggleDatePicker}
                                 onBlur={this.toggleDatePicker}
+                                onChange={this.onSelectDate}
                                 timeFormat={false}
                                 dateFormat="DD/MM/YYYY"
                                 defaultValue={new Date()}
@@ -101,6 +112,7 @@ class DateFilter extends React.Component{
                                 closeOnSelect={true}
                                 onFocus={this.toggleDatePicker}
                                 onBlur={this.toggleDatePicker}
+                                onChange={this.onSelectDate}
                                 timeFormat={false}
                                 dateFormat="DD/MM/YYYY"
                                 defaultValue={new Date()}

@@ -33,16 +33,18 @@ import {
 class AdminNavbar extends React.Component {
   constructor(){
     super();
-    this.isSidebarActive = false;
+    this.isSidebarActive = true;
   }
 
   toggleSidebar = () =>{
-    this.isSidebarActive = !this.isSidebarActive;
     if(this.isSidebarActive){
-        $('.main-content').addClass('toggled');
+      $('.main-content').addClass('toggled');
+      $('#sidenav-main').addClass('hide');
     }else{
-        $('.main-content').removeClass('toggled');
+      $('.main-content').removeClass('toggled');
+      $('#sidenav-main').removeClass('hide');
     }
+    this.isSidebarActive = !this.isSidebarActive;
   }
 
   render() {

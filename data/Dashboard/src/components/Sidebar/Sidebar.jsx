@@ -55,8 +55,31 @@ class Sidebar extends React.Component {
   constructor(props) {
     super(props);
     this.activeRoute.bind(this);
+    this.state={
+      seletedDate : new Date(),
+      region : [],
+      mill : [],
+      supplierGroup : [],
+      supplierName : [],
+      supplierCategory : []
+    }
   }
-  // verifies if routeName is the one active (in browser input)
+
+  applyFilter = () =>{
+    let {seletedDate,region,mill,supplierGroup,supplierName,supplierCategory} = this.state;
+    console.log(seletedDate,region,mill,supplierGroup,supplierName,supplierCategory);
+  }
+  clearFilter = () =>{
+    console.log("clear all");
+  }
+
+  callbackHandlerForDateFilter = (date) => {
+       this.setState({
+        seletedDate: date,
+       });
+       alert(date);
+   }
+
   activeRoute(routeName) {
     return this.props.location.pathname.indexOf(routeName) > -1 ? "active" : "";
   }
@@ -228,7 +251,7 @@ class Sidebar extends React.Component {
               </Row>
               <Row>
                 <Col xs="12">
-                      <DateFilter/>
+                      <DateFilter handleSelectedDate={this.callbackHandlerForDateFilter}/>
                 </Col>
               </Row>
               <Row>
@@ -260,8 +283,8 @@ class Sidebar extends React.Component {
               <Row>
                 <Col xs="12">
                   <div className="d-flex flex-column justify-content-center filter-btn">
-                    <Button color="info" type="button" className="apply">Apply</Button>
-                    <Button color="primary" outline type="button" className="clear">Clear Filter</Button>
+                    <Button color="info" type="button" className="apply" onClick={this.applyFilter}>Apply</Button>
+                    <Button color="primary" outline type="button" className="clear" onClick={this.clearFilter}>Clear Filter</Button>
                   </div>
                 </Col>
               </Row>

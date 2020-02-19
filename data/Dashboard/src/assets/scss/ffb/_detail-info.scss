@@ -24,7 +24,7 @@
                     .MuiPaper-root{
                         box-shadow: none;
                         border: 1px solid #e6ecf1;
-                        padding: 1.25rem;
+                        padding: 0rem;
                         background-color: #f9fbfc;
                         .MuiTableRow-head{
                             .MuiTableCell-head{
@@ -54,13 +54,26 @@
                                         font-weight: 500;
                                     }
                                 }
+                                &[level="2"]{
+                                    .MuiTableCell-root{
+                                        padding-top: 8px;
+                                        padding-bottom: 8px;
+                                    }
+                                }
                                 &:not([level]){
                                     height: 1px !important;
                                 }
                                 .MuiTableCell-root{
                                     border-color: #e8eaf0;
+                                    padding-top: 2px;
+                                    padding-bottom: 2px;
                                     .MuiIconButton-root{
-                                        padding: 8px;
+                                        padding: 2px;
+                                        .MuiIconButton-label{
+                                            .MuiIcon-root{
+                                                font-size: 16px;
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -105,7 +118,6 @@
                             }
                         }
                         box-shadow: none;
-                        padding: 1.25rem 0;
                         background-color: #1E2742;
                         color: #4d7bca;
                         .MuiTableRow-head{

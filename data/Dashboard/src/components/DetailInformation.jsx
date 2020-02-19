@@ -3,18 +3,28 @@ import {Card,CardHeader, CardBody, Row , Button,NavItem,
     NavLink,
     Nav,
     TabContent,
-    TabPane} from 'reactstrap'
+    TabPane} from 'reactstrap';
 import classnames from "classnames";
 import MaterialTable from "material-table";
+import Chart from "chart.js";
+// react plugin used to create charts
+import { Line, Bar } from "react-chartjs-2";
+import {
+    chartOptions,
+    parseOptions,
+    chartExample1,
+    chartExample2
+  } from "variables/charts.jsx";
 
 class DetailInformation extends React.Component{
     state = {
-        tabs: 2
+        tabs: 2,
+        chartExample1Data: "data1"
     };
     exampleColumn = [
-        { title: 'Region', field: 'region' },
-        { title: 'Mill', field: 'mill' },
-        { title: 'Supplier Name', field: 'supplier' },
+        { title: 'Region', field: 'region', width : '130px' },
+        { title: 'Mill', field: 'mill', width : '130px' },
+        { title: 'Supplier Name', field: 'supplier', width : '180px' },
         { title: '1', field: 'd1', type: 'numeric' },
         { title: '2', field: 'd2', type: 'numeric'},
         { title: '3', field: 'd3', type: 'numeric' },
@@ -79,7 +89,7 @@ class DetailInformation extends React.Component{
         {
             id: 11,
             supplier: "supplier x",
-            parentId: 9,
+            parentId: 10,
             d1:343, d2:343, d3:232, d4:23323, d5:232, d6:23, d7:112, d8:235, d9:52, d10:112, d11:1254, d12:65
         },
       ];
@@ -155,7 +165,56 @@ class DetailInformation extends React.Component{
                         <div>
                         <TabContent activeTab={"tabs" + this.state.tabs}>
                             <TabPane tabId="tabs1">
-                                chart here
+                                <Card className="bg-gradient-default shadow">
+                                    <CardHeader className="bg-transparent">
+                                    <Row className="align-items-center">
+                                        <div className="col">
+                                        <h6 className="text-uppercase text-light ls-1 mb-1">
+                                            Overview
+                                        </h6>
+                                        <h2 className="text-white mb-0">Sales value</h2>
+                                        </div>
+                                        <div className="col">
+                                        <Nav className="justify-content-end" pills>
+                                            <NavItem>
+                                            <NavLink
+                                                className={classnames("py-2 px-3", {
+                                                active: this.state.activeNav === 1
+                                                })}
+                                                href="#pablo"
+                                                onClick={e => this.toggleNavs(e, 1)}
+                                            >
+                                                <span className="d-none d-md-block">Month</span>
+                                                <span className="d-md-none">M</span>
+                                            </NavLink>
+                                            </NavItem>
+                                            <NavItem>
+                                            <NavLink
+                                                className={classnames("py-2 px-3", {
+                                                active: this.state.activeNav === 2
+                                                })}
+                                                data-toggle="tab"
+                                                href="#pablo"
+                                                onClick={e => this.toggleNavs(e, 2)}
+                                            >
+                                                <span className="d-none d-md-block">Week</span>
+                                                <span className="d-md-none">W</span>
+                                            </NavLink>
+                                            </NavItem>
+                                        </Nav>
+                                        </div>
+                                    </Row>
+                                    </CardHeader>
+                                    <CardBody>
+                                    <div className="chart">
+                                        <Line
+                                        data={chartExample1[this.state.chartExample1Data]}
+                                        options={chartExample1.options}
+                                        getDatasetAtEvent={e => console.log(e)}
+                                        />
+                                    </div>
+                                    </CardBody>
+                                </Card>
                             </TabPane>
                             <TabPane tabId="tabs2">
                                     {/* <MaterialTable parentChildData={(row, rows) => rows.find(a => a.id === row.parentId)}
