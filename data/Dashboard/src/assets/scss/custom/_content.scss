@@ -56,6 +56,17 @@
     margin-left: 0 !important;
 }
 
+#sidenav-main{
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 1s, opacity .5s linear;
+    &.hide{
+        visibility: hidden;
+        opacity: 0;
+    }
+}
+
+
 // Offsets the main content depending on the sidebar positioning
 
 .navbar-vertical.navbar-expand {
@@ -116,6 +127,66 @@
         padding-right: 20px !important;
       }
   }
+
+
+.flex-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-between;
+    align-content:space-between;
+  }
+  .col {
+    flex: 1;
+    min-width: 170px;
+  }
+
+  @media (min-width: 1560px) { 
+    .main-content {
+        .header{
+            .flex-grid.kpis{
+                .col{
+                    min-width: 200px;
+                }
+            }
+        }
+        &.toggled{
+            .header{
+                .flex-grid.kpis{
+                    .col{
+                        min-width: 260px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1770px) and (min-width: 1009px){ 
+    .main-content {
+        .header{
+            .flex-grid.kpis{
+                .col{
+                    min-width: 160px;
+                }
+            }
+        }
+    }
+}
+@media (max-width: 1008px)  and (min-width: 890px){ 
+    .main-content {
+        .header{
+            .flex-grid.kpis{
+                .col{
+                    width: 33.33333333333333% !important;
+                    max-width: 33.33333333333333% !important;
+                }
+            }
+        }
+    }
+}
+
+
+
   .filter-title{
       color: #fff;
       font-size: 1.125rem;
