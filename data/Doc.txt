@@ -1,0 +1,161 @@
+// Input /filter/region
+
+Nothing
+
+// Output /filter/region
+[
+    {
+        "RegionID": 1,
+        "RegionCode": "JBI"
+    },
+    {
+        "RegionID": 2,
+        "RegionCode": "PDG"
+    },
+    {
+        "RegionID": 3,
+        "RegionCode": "PKU"
+    }
+]
+
+// Input /filter/mill
+
+{
+	"region": ["1","2"] (RegionID)
+}
+
+if send empty array, api will output all mill
+
+{
+	"region": [] (RegionID)
+}
+
+// Output /filter/mill
+[
+    {
+        "CompanyCode": "CCL",
+        "CompanyDisplay": "M10 - CCL"
+    },
+    {
+        "CompanyCode": "CSL",
+        "CompanyDisplay": "M13 - CSL"
+    },
+    {
+        "CompanyCode": "GCM",
+        "CompanyDisplay": "M14 - GCM"
+    },
+    {
+        "CompanyCode": "BSSP",
+        "CompanyDisplay": "M16 - BSSP"
+    },
+    {
+        "CompanyCode": "KPSS",
+        "CompanyDisplay": "M17 - KPSS"
+    },
+    {
+        "CompanyCode": "BSSI",
+        "CompanyDisplay": "M19 - BSSI"
+    },
+    {
+        "CompanyCode": "KPST",
+        "CompanyDisplay": "M20 - KPST"
+    }
+]
+
+// Input /filter/supplier
+
+{
+	"region": ["1","2"], (RegionID)
+	"mill": ["MSJ","BMM"], (CompanyCode)
+}
+
+if send all empty array api will output all
+
+{
+	"region": [], (RegionID)
+	"mill": [], (CompanyCode)
+}
+
+// Output /filter/supplier
+[
+    {
+        "SupplierName": "GUNADY",
+        "SupplierID": 156
+    },
+    {
+        "SupplierName": "GUNAWAN",
+        "SupplierID": 148
+    },
+    {
+        "SupplierName": "H. YASRIL SARI",
+        "SupplierID": 119
+    },
+    {
+        "SupplierName": "INDRA PURNAWAN",
+        "SupplierID": 151
+    },
+    {
+        "SupplierName": "LEA GINTING",
+        "SupplierID": 118
+    },
+    {
+        "SupplierName": "MURNI",
+        "SupplierID": 152
+    },
+    {
+        "SupplierName": "PT. BINA MITRA MAKMUR",
+        "SupplierID": 195
+    },
+    {
+        "SupplierName": "PT.MITRA SAWIT JAMBI",
+        "SupplierID": 194
+    },
+    {
+        "SupplierName": "RAHMAD HIDAYAT BARUS",
+        "SupplierID": 117
+    }
+]
+
+// Input /filter/docode
+
+{
+	"region": ["1","2"], (RegionID)
+	"mill": ["MSJ","BMM"], (CompanyCode)
+	"supplierName": ["195","122","74"] (SupplierID)
+}
+
+if send all empty array api will output all
+
+{
+	"region": [], (RegionID)
+	"mill": [], (CompanyCode)
+	"supplierName": [] (SupplierID)
+}
+
+// Output /filter/docode
+[
+    {
+        "DOCOde": "BMM"
+    },
+    {
+        "DOCOde": "PT. ZODIAK S.S - RAM KUAMANG"
+    },
+    {
+        "DOCOde": "PT. ZODIAK S.S -RAM KUAMANG BMM"
+    },
+    {
+        "DOCOde": "PT.ZODIAK SMTR SJHTR-ARIES"
+    },
+    {
+        "DOCOde": "PT.ZODIAK SMTR SJHTR-SAGITARIUS"
+    },
+    {
+        "DOCOde": "PT.ZODIAK SMTR SJHTR-SCORPIO"
+    },
+    {
+        "DOCOde": "PT.ZODIAK SMTR SJHTR-SHAMEL"
+    },
+    {
+        "DOCOde": "PT.ZODIAK SMTR SJHTR-SK"
+    }
+]

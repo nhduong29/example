@@ -44,7 +44,7 @@ import {
   Col
 } from "reactstrap";
 import DateFilter from 'components/DateFilter.jsx';
-import FilterItem from 'components/FilterItem.jsx';
+import RegionSelectBox from 'components/FFB/RegionSelectBox.jsx'
 
 var ps;
 
@@ -254,29 +254,25 @@ class Sidebar extends React.Component {
                       <DateFilter handleSelectedDate={this.callbackHandlerForDateFilter}/>
                 </Col>
               </Row>
+              <RegionSelectBox/>
               <Row>
                 <Col xs="12">
-                      <FilterItem title="Region"/>
+                      {/* <FilterItem title="Mill"/> */}
                 </Col>
               </Row>
               <Row>
                 <Col xs="12">
-                      <FilterItem title="Mill"/>
+                      {/* <FilterItem title="Supplier Group"/> */}
                 </Col>
               </Row>
               <Row>
                 <Col xs="12">
-                      <FilterItem title="Supplier Group"/>
+                      {/* <FilterItem title="Supplier Name"/> */}
                 </Col>
               </Row>
               <Row>
                 <Col xs="12">
-                      <FilterItem title="Supplier Name"/>
-                </Col>
-              </Row>
-              <Row>
-                <Col xs="12">
-                      <FilterItem title="Supplier Category"/>
+                      {/* <FilterItem title="Supplier Category"/> */}
                 </Col>
               </Row>
 
