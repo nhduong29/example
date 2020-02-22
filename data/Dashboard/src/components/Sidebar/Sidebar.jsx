@@ -44,7 +44,7 @@ import {
   Col
 } from "reactstrap";
 import DateFilter from 'components/DateFilter.jsx';
-import RegionSelectBox from 'components/FFB/RegionSelectBox.jsx'
+import FilterContainer from 'components/FFB/FilterContainer.jsx'
 
 var ps;
 
@@ -57,20 +57,7 @@ class Sidebar extends React.Component {
     this.activeRoute.bind(this);
     this.state={
       seletedDate : new Date(),
-      region : [],
-      mill : [],
-      supplierGroup : [],
-      supplierName : [],
-      supplierCategory : []
     }
-  }
-
-  applyFilter = () =>{
-    let {seletedDate,region,mill,supplierGroup,supplierName,supplierCategory} = this.state;
-    console.log(seletedDate,region,mill,supplierGroup,supplierName,supplierCategory);
-  }
-  clearFilter = () =>{
-    console.log("clear all");
   }
 
   callbackHandlerForDateFilter = (date) => {
@@ -113,6 +100,10 @@ class Sidebar extends React.Component {
       );
     });
   };
+
+  getFilterData = (data) =>{
+    console.log("getFilterData",data);
+  }
   render() {
     const { bgColor, routes, logo } = this.props;
     let navbarBrandProps;
@@ -127,6 +118,7 @@ class Sidebar extends React.Component {
         target: "_blank"
       };
     }
+    const greeting = 'Welcome to React';
     return (
       <Navbar
         className="navbar-vertical fixed-left"
@@ -254,36 +246,7 @@ class Sidebar extends React.Component {
                       <DateFilter handleSelectedDate={this.callbackHandlerForDateFilter}/>
                 </Col>
               </Row>
-              <RegionSelectBox/>
-              <Row>
-                <Col xs="12">
-                      {/* <FilterItem title="Mill"/> */}
-                </Col>
-              </Row>
-              <Row>
-                <Col xs="12">
-                      {/* <FilterItem title="Supplier Group"/> */}
-                </Col>
-              </Row>
-              <Row>
-                <Col xs="12">
-                      {/* <FilterItem title="Supplier Name"/> */}
-                </Col>
-              </Row>
-              <Row>
-                <Col xs="12">
-                      {/* <FilterItem title="Supplier Category"/> */}
-                </Col>
-              </Row>
-
-              <Row>
-                <Col xs="12">
-                  <div className="d-flex flex-column justify-content-center filter-btn">
-                    <Button color="info" type="button" className="apply" onClick={this.applyFilter}>Apply</Button>
-                    <Button color="primary" outline type="button" className="clear" onClick={this.clearFilter}>Clear Filter</Button>
-                  </div>
-                </Col>
-              </Row>
+              <FilterContainer />
 
             {/* Navigation */}
             {/* <Nav className="kaka" navbar>{this.createLinks(routes)}</Nav> */}

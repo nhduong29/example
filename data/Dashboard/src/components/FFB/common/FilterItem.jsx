@@ -3,11 +3,16 @@ import {FormGroup,Label} from 'reactstrap';
 import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes';
 
 class FilterItem extends React.Component{
+  state={
+    optionSelected: []
+  }
     handleChange = selected => {
       this.setState({
         optionSelected: selected
       });
-      this.props.handleFilterList(selected, this.props.type);
+    };
+    handleMenuClose = () => {
+      this.props.handleOnFilterMenuClose(this.state.optionSelected, this.props.type);
     };
     render(){
         return(
@@ -20,8 +25,8 @@ class FilterItem extends React.Component{
                             placeholderButtonLabel="Select Data"
                             className="filter-select-checkboxes"
                             classNamePrefix="ffb-select"
-                            value={this.props.selected}
                             onChange={this.handleChange}
+                            onMenuClose = {this.handleMenuClose}
                              />
                     </div>
 
