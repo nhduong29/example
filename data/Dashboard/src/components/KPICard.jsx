@@ -9,6 +9,11 @@ class KPICard extends React.Component{
         }, {
             'text-warning' : this.props.positive === false
         })
+        let arrowClass = classNames('fa',{
+            'fa-arrow-up' : this.props.positive === true
+        },{
+            'fa-arrow-down' : this.props.positive === false
+        })
         return (
             <>
             <Card className="card-stats  mb-3">
@@ -19,7 +24,7 @@ class KPICard extends React.Component{
                 <div className="d-flex align-items-center mt-1">
                     <span className="card-value">{this.props.value}</span>
                     <span className={stateClassName}>
-                    <i className="fa fa-arrow-up" /> {this.props.state}
+                    <i className={arrowClass} /> {this.props.state}
                     </span>{" "}
                 </div>
                 <div>

@@ -46,14 +46,22 @@ import {
   chartExample2
 } from "variables/charts.jsx";
 
-import Header from "components/Headers/Header.jsx";
+import classNames from "classnames";
+import KPICard from "components/KPICard.jsx";
 import DetailInformation from "components/DetailInformation.jsx";
 
 class Index extends React.Component {
   state = {
     activeNav: 1,
+    selectedKPI : 0,
     chartExample1Data: "data1"
   };
+  onSelectKPI = (id)=>{
+    console.log(id);
+    this.setState({
+      selectedKPI : id
+    })
+  }
   toggleNavs = (e, index) => {
     e.preventDefault();
     this.setState({
@@ -72,11 +80,113 @@ class Index extends React.Component {
     if (window.Chart) {
       parseOptions(Chart, chartOptions());
     }
+    console.log("index query componentWillMount: ",this.props.query);
+  }
+  componentDidUpdate(){
+    console.log("index query: ",this.props.query);
+
   }
   render() {
     return (
       <>
-        <Header />
+        <Container fluid>
+          <div className="row">
+            <div className="col-12">
+              <div className="header">
+                <div className="header-body">
+                  <div className="kpis">
+                    <div className="row">
+                      <div className="col-3 col-md-3 col-sm-6">
+                        <div className={classNames('kpi',{
+                            'active' : this.state.selectedKPI === 0
+                          })} 
+                          onClick={()=> this.onSelectKPI(0)}>
+                            <KPICard
+                            title="Purchase Price (IDR/Kg)" 
+                            value="530,102" positive={true} 
+                            state="3.47%" 
+                            info="Since last month" />
+                        </div>
+                      </div>
+                      <div className="col-3 col-md-3 col-sm-6">
+                        <div className={classNames({'active' : this.state.selectedKPI === 1}, 'kpi')} 
+                          onClick={()=> this.onSelectKPI(1)}>
+                            <KPICard
+                            title="Purchase Price (IDR/Kg)" 
+                            value="530,102" positive={true} 
+                            state="3.47%" 
+                            info="Since last month" />
+                        </div>
+                      </div>
+                      <div className="col-3 col-md-3 col-sm-6">
+                        <div className={classNames({'active' : this.state.selectedKPI === 2}, 'kpi')} 
+                          onClick={()=> this.onSelectKPI(2)}>
+                            <KPICard
+                            title="Purchase Price (IDR/Kg)" 
+                            value="530,102" positive={true} 
+                            state="3.47%" 
+                            info="Since last month" />
+                        </div>
+                      </div>
+                      <div className="col-3 col-md-3 col-sm-6">
+                        <div className={classNames({'active' : this.state.selectedKPI === 3}, 'kpi')} 
+                          onClick={()=> this.onSelectKPI(3)}>
+                            <KPICard
+                            title="Purchase Price (IDR/Kg)" 
+                            value="530,102" positive={true} 
+                            state="3.47%" 
+                            info="Since last month" />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="row">
+                    <div className="col-3 col-md-3 col-sm-6">
+                        <div className={classNames({'active' : this.state.selectedKPI === 4}, 'kpi')} 
+                          onClick={()=> this.onSelectKPI(4)}>
+                            <KPICard
+                            title="Purchase Price (IDR/Kg)" 
+                            value="530,102" positive={true} 
+                            state="3.47%" 
+                            info="Since last month" />
+                        </div>
+                      </div>
+                      <div className="col-3 col-md-3 col-sm-6">
+                        <div className={classNames({'active' : this.state.selectedKPI === 5}, 'kpi')} 
+                          onClick={()=> this.onSelectKPI(5)}>
+                            <KPICard
+                            title="Purchase Price (IDR/Kg)" 
+                            value="530,102" positive={true} 
+                            state="3.47%" 
+                            info="Since last month" />
+                        </div>
+                      </div>
+                      <div className="col-3 col-md-3 col-sm-6">
+                        <div className={classNames({'active' : this.state.selectedKPI === 6}, 'kpi')} 
+                          onClick={()=> this.onSelectKPI(6)}>
+                            <KPICard
+                            title="Purchase Price (IDR/Kg)" 
+                            value="530,102" positive={true} 
+                            state="3.47%" 
+                            info="Since last month" />
+                        </div>
+                      </div>
+                      <div className="col-3 col-md-3 col-sm-6">
+                        <div className={classNames({'active' : this.state.selectedKPI === 7}, 'kpi')} 
+                          onClick={()=> this.onSelectKPI(7)}>
+                            <KPICard
+                            title="Purchase Price (IDR/Kg)" 
+                            value="530,102" positive={true} 
+                            state="3.47%" 
+                            info="Since last month" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>  
+              </div>
+            </div>
+          </div>
+        </Container>
         {/* Page content */}
         <Container fluid>
           <Row>
@@ -84,270 +194,6 @@ class Index extends React.Component {
               <DetailInformation/>
             </Col>
           </Row>
-          {/* <Row>
-            <Col className="mb-5 mb-xl-0" xl="8">
-              <Card className="bg-gradient-default shadow">
-                <CardHeader className="bg-transparent">
-                  <Row className="align-items-center">
-                    <div className="col">
-                      <h6 className="text-uppercase text-light ls-1 mb-1">
-                        Overview
-                      </h6>
-                      <h2 className="text-white mb-0">Sales value</h2>
-                    </div>
-                    <div className="col">
-                      <Nav className="justify-content-end" pills>
-                        <NavItem>
-                          <NavLink
-                            className={classnames("py-2 px-3", {
-                              active: this.state.activeNav === 1
-                            })}
-                            href="#pablo"
-                            onClick={e => this.toggleNavs(e, 1)}
-                          >
-                            <span className="d-none d-md-block">Month</span>
-                            <span className="d-md-none">M</span>
-                          </NavLink>
-                        </NavItem>
-                        <NavItem>
-                          <NavLink
-                            className={classnames("py-2 px-3", {
-                              active: this.state.activeNav === 2
-                            })}
-                            data-toggle="tab"
-                            href="#pablo"
-                            onClick={e => this.toggleNavs(e, 2)}
-                          >
-                            <span className="d-none d-md-block">Week</span>
-                            <span className="d-md-none">W</span>
-                          </NavLink>
-                        </NavItem>
-                      </Nav>
-                    </div>
-                  </Row>
-                </CardHeader>
-                <CardBody>
-                  <div className="chart">
-                    <Line
-                      data={chartExample1[this.state.chartExample1Data]}
-                      options={chartExample1.options}
-                      getDatasetAtEvent={e => console.log(e)}
-                    />
-                  </div>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col xl="4">
-              <Card className="shadow">
-                <CardHeader className="bg-transparent">
-                  <Row className="align-items-center">
-                    <div className="col">
-                      <h6 className="text-uppercase text-muted ls-1 mb-1">
-                        Performance
-                      </h6>
-                      <h2 className="mb-0">Total orders</h2>
-                    </div>
-                  </Row>
-                </CardHeader>
-                <CardBody>
-                  <div className="chart">
-                    <Bar
-                      data={chartExample2.data}
-                      options={chartExample2.options}
-                    />
-                  </div>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
-          <Row className="mt-5">
-            <Col className="mb-5 mb-xl-0" xl="8">
-              <Card className="shadow">
-                <CardHeader className="border-0">
-                  <Row className="align-items-center">
-                    <div className="col">
-                      <h3 className="mb-0">Page visits</h3>
-                    </div>
-                    <div className="col text-right">
-                      <Button
-                        color="primary"
-                        href="#pablo"
-                        onClick={e => e.preventDefault()}
-                        size="sm"
-                      >
-                        See all
-                      </Button>
-                    </div>
-                  </Row>
-                </CardHeader>
-                <Table className="align-items-center table-flush" responsive>
-                  <thead className="thead-light">
-                    <tr>
-                      <th scope="col">Page name</th>
-                      <th scope="col">Visitors</th>
-                      <th scope="col">Unique users</th>
-                      <th scope="col">Bounce rate</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">/FFB/</th>
-                      <td>4,569</td>
-                      <td>340</td>
-                      <td>
-                        <i className="fas fa-arrow-up text-success mr-3" />{" "}
-                        46,53%
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">/FFB/index.html</th>
-                      <td>3,985</td>
-                      <td>319</td>
-                      <td>
-                        <i className="fas fa-arrow-down text-warning mr-3" />{" "}
-                        46,53%
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">/FFB/charts.html</th>
-                      <td>3,513</td>
-                      <td>294</td>
-                      <td>
-                        <i className="fas fa-arrow-down text-warning mr-3" />{" "}
-                        36,49%
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">/FFB/tables.html</th>
-                      <td>2,050</td>
-                      <td>147</td>
-                      <td>
-                        <i className="fas fa-arrow-up text-success mr-3" />{" "}
-                        50,87%
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">/FFB/profile.html</th>
-                      <td>1,795</td>
-                      <td>190</td>
-                      <td>
-                        <i className="fas fa-arrow-down text-danger mr-3" />{" "}
-                        46,53%
-                      </td>
-                    </tr>
-                  </tbody>
-                </Table>
-              </Card>
-            </Col>
-            <Col xl="4">
-              <Card className="shadow">
-                <CardHeader className="border-0">
-                  <Row className="align-items-center">
-                    <div className="col">
-                      <h3 className="mb-0">Social traffic</h3>
-                    </div>
-                    <div className="col text-right">
-                      <Button
-                        color="primary"
-                        href="#pablo"
-                        onClick={e => e.preventDefault()}
-                        size="sm"
-                      >
-                        See all
-                      </Button>
-                    </div>
-                  </Row>
-                </CardHeader>
-                <Table className="align-items-center table-flush" responsive>
-                  <thead className="thead-light">
-                    <tr>
-                      <th scope="col">Referral</th>
-                      <th scope="col">Visitors</th>
-                      <th scope="col" />
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">Facebook</th>
-                      <td>1,480</td>
-                      <td>
-                        <div className="d-flex align-items-center">
-                          <span className="mr-2">60%</span>
-                          <div>
-                            <Progress
-                              max="100"
-                              value="60"
-                              barClassName="bg-gradient-danger"
-                            />
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Facebook</th>
-                      <td>5,480</td>
-                      <td>
-                        <div className="d-flex align-items-center">
-                          <span className="mr-2">70%</span>
-                          <div>
-                            <Progress
-                              max="100"
-                              value="70"
-                              barClassName="bg-gradient-success"
-                            />
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Google</th>
-                      <td>4,807</td>
-                      <td>
-                        <div className="d-flex align-items-center">
-                          <span className="mr-2">80%</span>
-                          <div>
-                            <Progress max="100" value="80" />
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Instagram</th>
-                      <td>3,678</td>
-                      <td>
-                        <div className="d-flex align-items-center">
-                          <span className="mr-2">75%</span>
-                          <div>
-                            <Progress
-                              max="100"
-                              value="75"
-                              barClassName="bg-gradient-info"
-                            />
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">twitter</th>
-                      <td>2,645</td>
-                      <td>
-                        <div className="d-flex align-items-center">
-                          <span className="mr-2">30%</span>
-                          <div>
-                            <Progress
-                              max="100"
-                              value="30"
-                              barClassName="bg-gradient-warning"
-                            />
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </Table>
-              </Card>
-            </Col>
-          </Row> */}
         </Container>
       </>
     );

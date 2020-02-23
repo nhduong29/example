@@ -11,7 +11,8 @@ https://github.com/JedWatson/react-select/issues/892
 https://khan.github.io/react-multi-select/?selectedKind=MultiSelect&selectedStory=default%20view&full=0&addons=1&stories=1&panelRight=0&addonPanel=storybook%2Factions%2Factions-panel
 
 ## Datetime picker
-https://www.npmjs.com/package/react-datetime
+https://github.com/YouCanBookMe/react-datetime
+
 
 ## Table
 https://material-table.com/#/docs/features/tree-data

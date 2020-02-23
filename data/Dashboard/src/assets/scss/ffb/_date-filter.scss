@@ -1,6 +1,28 @@
 .date-filter{
     background: $bg-secondary;
     border-radius: 5px;
+    .btn-group{
+        display:flex;
+        justify-content: space-between;
+        button{
+            display: block;
+            background-color: transparent;
+            border: none;
+            &.mid{
+                flex: 1;
+            }
+            &.active,&:focus{
+                background-color:  $active-color !important;
+            }
+        }
+    }
+    .day-select{
+        padding: 16px;
+        .form-group{
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+    }
     .rdt{
         input.form-control{
             padding: 0.5rem;
@@ -9,38 +31,14 @@
     }
     .rdtPicker{
         min-width: 290px !important;
-    }
-    .nav-tabs{
-        border-bottom: none;
-        justify-content:space-between;
-        .nav-item{
-            flex-grow: 1;
-            align-self: center;
-            .nav-link{
-                text-align: center;
-                padding-left: 10px;
-                padding-right: 10px;
-                color: #fff;
-                border: none;
-                &.active{
-                    background: $active-color;
-                    border: none;
-                    &.mid{
-                        border-radius: 0;
-                    }
-                }
-                &:hover{
-                    border: none;
-                    cursor: pointer;
-                }
+        .rdtMonths{
+            .rdtMonth{
+                color: #525f7f;
             }
         }
-    }
-    .tab-content{
-        padding: 20px;
-        .tab-pane{
-            .form-group{
-                margin-bottom: 3px !important;
+        .rdtYears{
+            .rdtYear{
+                color: #525f7f;
             }
         }
     }

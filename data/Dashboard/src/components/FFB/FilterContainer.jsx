@@ -4,6 +4,7 @@ import {Row, Col,Button} from 'reactstrap';
 import _ from 'lodash';
 import axios  from 'axios';
 import { API_BASE_URL } from '../../constants';
+import DateFilter from 'components/DateFilter.jsx';
 import FilterAPI from '../../api/FilterAPI.js';
 //Duong
 
@@ -13,6 +14,8 @@ class FilterContainer extends React.Component{
         super(props);
     
         this.state = {
+            selectedDate : new Date(),
+            type:'day',
             regionList : [],
             millList : [],
             supplierList : [],
@@ -139,7 +142,7 @@ class FilterContainer extends React.Component{
         });
     }
 
-   onchangeSupplier = async (selectedSuppiler) =>{
+   onchangeSupplier = async (selectedSupplier) =>{
        //lock
         this.setState({
             isDisabledButton : true
@@ -152,7 +155,7 @@ class FilterContainer extends React.Component{
             filterData : {
                 selectedRegion : this.state.filterData.selectedRegion,
                 selectedMill : this.state.filterData.selectedMill,
-                selectedSupplier : selectedSuppiler,
+                selectedSupplier : selectedSupplier,
                 selectedDO : newSelectedDO,
             },
             isDisabledButton : false //unlock
@@ -172,11 +175,6 @@ class FilterContainer extends React.Component{
         });
     }
 
-    getFilerData = async (param,query) =>{
-       let result =  await axios.post(`${API_BASE_URL}/filter/${param}`, query);
-       return result.data
-    }
-
     getQuery = (region =[], mill=[], supplier=[],docode=[]) =>{
         return {
             "region":region,
@@ -186,12 +184,27 @@ class FilterContainer extends React.Component{
         }
     }
 
+    callbackHandlerForDateFilter = (date,type) => {
+        this.setState({
+            selectedDate: date,
+            type : type
+        });
+    }
+
     applyFilter = () =>{
         var timer = null;
         timer = setInterval(() => {
             if(this.state.isDisabledButton === false){
                 clearInterval(timer);
-                console.log("this.state.filterData",this.state.filterData);
+                console.log("filterData",this.state.filterData);
+                console.log("selectedDate",this.state.selectedDate);
+                console.log("type",this.state.type);
+                let data={
+                    filterData : this.state.filterData,
+                    selectedDate : this.state.selectedDate,
+                    type : this.state.type
+                }
+                this.props.onFilter(data);
             }else{
                 console.log('Data is loading');
             }
@@ -207,6 +220,11 @@ class FilterContainer extends React.Component{
     render(){
         return(
             <>
+                <Row>
+                    <Col xs="12">
+                        <DateFilter handleSelectedDate={this.callbackHandlerForDateFilter}/>
+                    </Col>
+                </Row>
                 <Row>
                     <Col xs="12">
                         <FilterItem 
@@ -230,7 +248,7 @@ class FilterContainer extends React.Component{
                     <Col xs="12">
                         <FilterItem 
                         list={this.state.supplierList} 
-                        title="Suppiler Name" 
+                        title="Supplier Name" 
                         handleOnFilterMenuClose = {this.callbackHandleOnFilterMenuClose}
                         type="SUPPLIER" />
                     </Col>

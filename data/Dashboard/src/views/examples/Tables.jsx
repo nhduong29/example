@@ -38,13 +38,11 @@ import {
   UncontrolledTooltip
 } from "reactstrap";
 // core components
-import Header from "components/Headers/Header.jsx";
 
 class Tables extends React.Component {
   render() {
     return (
       <>
-        <Header />
         {/* Page content */}
         <Container className="mt--7" fluid>
           {/* Table */}

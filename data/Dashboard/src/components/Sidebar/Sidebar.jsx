@@ -43,7 +43,7 @@ import {
   Row,
   Col
 } from "reactstrap";
-import DateFilter from 'components/DateFilter.jsx';
+
 import FilterContainer from 'components/FFB/FilterContainer.jsx'
 
 var ps;
@@ -55,17 +55,9 @@ class Sidebar extends React.Component {
   constructor(props) {
     super(props);
     this.activeRoute.bind(this);
-    this.state={
-      seletedDate : new Date(),
-    }
   }
 
-  callbackHandlerForDateFilter = (date) => {
-       this.setState({
-        seletedDate: date,
-       });
-       alert(date);
-   }
+  
 
   activeRoute(routeName) {
     return this.props.location.pathname.indexOf(routeName) > -1 ? "active" : "";
@@ -102,7 +94,7 @@ class Sidebar extends React.Component {
   };
 
   getFilterData = (data) =>{
-    console.log("getFilterData",data);
+    this.props.onFilter(data);
   }
   render() {
     const { bgColor, routes, logo } = this.props;
@@ -241,12 +233,8 @@ class Sidebar extends React.Component {
                       <h2 className="filter-title">Search criteria</h2>
                 </Col>
               </Row>
-              <Row>
-                <Col xs="12">
-                      <DateFilter handleSelectedDate={this.callbackHandlerForDateFilter}/>
-                </Col>
-              </Row>
-              <FilterContainer />
+              
+              <FilterContainer onFilter={this.getFilterData}/>
 
             {/* Navigation */}
             {/* <Nav className="kaka" navbar>{this.createLinks(routes)}</Nav> */}

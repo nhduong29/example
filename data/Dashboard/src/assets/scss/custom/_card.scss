@@ -12,37 +12,43 @@
     padding-top: 98px;
     padding-bottom: 10px;
     .kpis{
-        padding-left: 7px;
-        padding-right: 7px;
-        .card-stats{
-            border-radius: 8px;
-            border-color: $border-color;
-            &:hover{
-                box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.18);
-                box-sizing: border-box;
-                border: 1px solid $primary-color-ffb;
-                cursor: pointer;
+        .kpi{
+            &.active{
+                .card-stats{
+                    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.18);
+                    box-sizing: border-box;
+                    border: 1px solid $primary-color-ffb;
+                }
             }
-            .card-body{
-                padding: .5rem;
-                .card-title{
-                    font-size: .75rem;
-                    min-height: 2.25rem;//Please consider later
+            .card-stats{
+                border-radius: 8px;
+                border-color: $border-color;
+                &:hover{
+                    box-sizing: border-box;
+                    border: 1px solid $primary-color-ffb;
+                    cursor: pointer;
                 }
-                .card-value{
-                    font-size: 1.25rem;
-                    font-weight: bold;
-                    align-self: center!important;
-                    flex-grow: 1;
-                }
-                .card-state{
-                    font-size: .75rem;
-                    flex-shrink: 1!important;
-                    text-align: center;
-                }
-                .card-info{
-                    font-size: .7rem;
-                    color: #8898aa;
+                .card-body{
+                    padding: .5rem;
+                    .card-title{
+                        font-size: .75rem;
+                        min-height: 2.25rem;//Please consider later
+                    }
+                    .card-value{
+                        font-size: 1.25rem;
+                        font-weight: bold;
+                        align-self: center!important;
+                        flex-grow: 1;
+                    }
+                    .card-state{
+                        font-size: .75rem;
+                        flex-shrink: 1!important;
+                        text-align: center;
+                    }
+                    .card-info{
+                        font-size: .7rem;
+                        color: #8898aa;
+                    }
                 }
             }
         }

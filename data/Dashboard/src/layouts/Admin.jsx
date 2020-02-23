@@ -19,10 +19,14 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import AdminNavbar from "components/Navbars/AdminNavbar.jsx";
 import Sidebar from "components/Sidebar/Sidebar.jsx";
+import Index from "views/Index.jsx";
 
 import routes from "routes.js";
 
 class Admin extends React.Component {
+  state = {
+    queryParam : ["hihi"]
+  }
   componentDidUpdate(e) {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
@@ -36,6 +40,7 @@ class Admin extends React.Component {
             path={prop.layout + prop.path}
             component={prop.component}
             key={key}
+            state = {{hi : "hello"}}
           />
         );
       } else {
@@ -55,10 +60,17 @@ class Admin extends React.Component {
     }
     return "Brand";
   };
+
+  getFilterData = (data) =>{
+    console.log("getFilterData on Admin.jsx",data);
+    this.setState({
+      queryParam : [data]
+    })
+  }
   render() {
     return (
       <>
-        <Sidebar
+        <Sidebar onFilter={this.getFilterData}
           {...this.props}
           routes={routes}
           logo={{
@@ -72,7 +84,17 @@ class Admin extends React.Component {
             {...this.props}
             brandText={this.getBrandText(this.props.location.pathname)}
           />
-          <Switch>{this.getRoutes(routes)}</Switch>
+          {/* <Switch>{this.getRoutes(routes)}</Switch> */}
+          <Switch>
+            <Route path='/admin/index'
+              render= {()=>(<Index query={this.state.queryParam}/>)}
+              key={0}
+            />
+            {/* <Route path='/admin/index1'
+              render= {()=>(<Index test={true}/>)}
+              key={1}
+            /> */}
+          </Switch>
         </div>
       </>
     );
