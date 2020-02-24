@@ -50,27 +50,46 @@ class AdminNavbar extends React.Component {
   render() {
     return (
       <>
-        <Navbar className="navbar-top fixed-top navbar-dark" expand="md" id="navbar-main">
+        <Navbar className="navbar-top fixed-top  navbar-dark d-none d-lg-inline-block d-md-block " expand="md" id="navbar-main">
           <Container fluid className="justify-content-between">
             <div className="left">
               <Link className="navbar-brand text-default"  to="/"  >
-              FFB Dashboard
+                SVPM Dashboard
                 </Link>
                 <button id="btn-toggle-filter" onClick={this.toggleSidebar} type="button" className="btn btn-icon"><i className="fas fa-align-left"></i></button>
-                <Link className="text-default d-none d-lg-inline-block active"  to="/"  >
+                <Link className="text-default active"  to="/"  >
                   Overview
                 </Link>
-                <Link className="text-default d-none d-lg-inline-block"  to="/"  >
+                <Link className="text-default"  to="/"  >
                   KPI Comparison
                 </Link>
-                <Link className="text-default d-none d-lg-inline-block"  to="/"  >
+                <Link className="text-default"  to="/"  >
                   Base Map
                 </Link>
             </div>
             <div className="right d-flex align-items-center">
+            {
+              //FFB bakup
+              /* 
               <button id="btn-alert" type="button" className="btn btn-icon"><i className="fas fa-bell"></i></button>
               <button id="btn-money" type="button" className="btn btn-icon">USD</button>
-              <Nav className="align-items-center d-none d-md-flex" navbar>
+              
+              <Navbar navbar className="align-items-center">
+                <UncontrolledDropdown nav>
+                  <DropdownToggle nav>
+                    <button id="btn-money" type="button" className="btn btn-icon">USD</button>
+                  </DropdownToggle>
+                  <DropdownMenu>
+                    <DropdownItem className="noti-title" header tag="div">
+                      <span id="btn-money-usd" type="button" className="btn btn-icon">USD</span>
+                    </DropdownItem>
+                    <DropdownItem to="/" tag={Link}>
+                      <span id="btn-money-1" type="button" className="btn btn-icon">USD</span>
+                    </DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+              </Navbar> */}
+              <Nav className="align-items-center" navbar>
               <UncontrolledDropdown nav>
                 <DropdownToggle className="pr-0" nav>
                   <Media className="align-items-center">
@@ -91,21 +110,9 @@ class AdminNavbar extends React.Component {
                   <DropdownItem className="noti-title" header tag="div">
                     <h6 className="text-overflow m-0">Welcome!</h6>
                   </DropdownItem>
-                  <DropdownItem to="/admin/user-profile" tag={Link}>
+                  <DropdownItem to="/" tag={Link}>
                     <i className="ni ni-single-02" />
                     <span>My profile</span>
-                  </DropdownItem>
-                  <DropdownItem to="/admin/user-profile" tag={Link}>
-                    <i className="ni ni-settings-gear-65" />
-                    <span>Settings</span>
-                  </DropdownItem>
-                  <DropdownItem to="/admin/user-profile" tag={Link}>
-                    <i className="ni ni-calendar-grid-58" />
-                    <span>Activity</span>
-                  </DropdownItem>
-                  <DropdownItem to="/admin/user-profile" tag={Link}>
-                    <i className="ni ni-support-16" />
-                    <span>Support</span>
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>

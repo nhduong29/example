@@ -48,7 +48,12 @@ class DateFilter extends React.Component{
                         active={this.state.type === 'day'}>
                         Daily
                     </Button>
-                    <Button className="mid" color="primary" 
+                    <Button color="primary" className="mid"
+                        onClick={() => this.conChangeType('week')} 
+                        active={this.state.type === 'week'}>
+                        Weekly
+                    </Button>
+                    <Button color="primary" 
                         onClick={() => this.conChangeType('mtd')} 
                         active={this.state.type === 'mtd'}>
                         MTD

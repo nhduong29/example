@@ -8,9 +8,9 @@
             display: block;
             background-color: transparent;
             border: none;
-            &.mid{
-                flex: 1;
-            }
+            padding: 8px 10px;
+            flex: 1;
+            font-weight: 400;
             &.active,&:focus{
                 background-color:  $active-color !important;
             }

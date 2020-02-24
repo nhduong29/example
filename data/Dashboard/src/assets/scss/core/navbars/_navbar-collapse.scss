@@ -56,14 +56,6 @@
                 opacity: 1;
                 background: #283448;
             }
-
-            :nth-child(1) {
-                transform: rotate(135deg);
-            }
-
-            :nth-child(2) {
-                transform: rotate(-135deg);
-            }
         }
 
         .navbar-collapse-header {

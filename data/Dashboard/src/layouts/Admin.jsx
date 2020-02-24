@@ -25,7 +25,14 @@ import routes from "routes.js";
 
 class Admin extends React.Component {
   state = {
-    queryParam : ["hihi"]
+    queryParam : {
+      "region" : [],
+      "mill" : [],
+      "supplier" : [],
+      "docode" : [],
+      "date" : new Date(),
+      "type" : "day"
+    }
   }
   componentDidUpdate(e) {
     document.documentElement.scrollTop = 0;
@@ -40,7 +47,6 @@ class Admin extends React.Component {
             path={prop.layout + prop.path}
             component={prop.component}
             key={key}
-            state = {{hi : "hello"}}
           />
         );
       } else {
@@ -66,7 +72,10 @@ class Admin extends React.Component {
     this.setState({
       queryParam : [data]
     })
+    console.log("queryParam on Admin.jsx",this.state.queryParam);
+    this.indexElement.current.updateKPIs();
   }
+  indexElement=React.createRef();
   render() {
     return (
       <>
@@ -87,7 +96,7 @@ class Admin extends React.Component {
           {/* <Switch>{this.getRoutes(routes)}</Switch> */}
           <Switch>
             <Route path='/admin/index'
-              render= {()=>(<Index query={this.state.queryParam}/>)}
+              render= {()=>(<Index ref={this.indexElement} query={this.state.queryParam}/>)}
               key={0}
             />
             {/* <Route path='/admin/index1'

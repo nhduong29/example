@@ -19,7 +19,7 @@ class KPICard extends React.Component{
             <Card className="card-stats  mb-3">
                 <CardBody>
                 <div>
-                    <CardTitle tag="h5" className="text-uppercase text-muted mb-0" >{this.props.title}</CardTitle>
+                    <CardTitle tag="h5" className=" mb-0" >{this.props.title}</CardTitle>
                 </div>
                 <div className="d-flex align-items-center mt-1">
                     <span className="card-value">{this.props.value}</span>

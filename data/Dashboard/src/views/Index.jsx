@@ -49,17 +49,27 @@ import {
 import classNames from "classnames";
 import KPICard from "components/KPICard.jsx";
 import DetailInformation from "components/DetailInformation.jsx";
+import axios  from 'axios';
+import { API_BASE_URL } from '../constants';
 
 class Index extends React.Component {
   state = {
     activeNav: 1,
-    selectedKPI : 0,
-    chartExample1Data: "data1"
+    selectedKPI : 1,
+    chartExample1Data: "data1",
+    kpis:[]
   };
+
   onSelectKPI = (id)=>{
     console.log(id);
     this.setState({
       selectedKPI : id
+    })
+  }
+  updateKPIs= async()=>{
+    const result = await axios.post(`${API_BASE_URL}/allKPI`, this.props.query);
+    this.setState({
+      kpis : result.data || []
     })
   }
   toggleNavs = (e, index) => {
@@ -82,121 +92,85 @@ class Index extends React.Component {
     }
     console.log("index query componentWillMount: ",this.props.query);
   }
-  componentDidUpdate(){
-    console.log("index query: ",this.props.query);
-
+  componentDidMount= async()=>{
+    console.log("index query componentDidMount: ",this.props.query);
+    //call api to get all data of KPI card
+    const result = await axios.post(`${API_BASE_URL}/allKPI`, this.props.query);
+    this.setState({
+      kpis : result.data || []
+    })
+    console.log("kpis", this.state.kpis);
   }
   render() {
-    return (
-      <>
-        <Container fluid>
-          <div className="row">
-            <div className="col-12">
-              <div className="header">
-                <div className="header-body">
-                  <div className="kpis">
-                    <div className="row">
-                      <div className="col-3 col-md-3 col-sm-6">
-                        <div className={classNames('kpi',{
-                            'active' : this.state.selectedKPI === 0
-                          })} 
-                          onClick={()=> this.onSelectKPI(0)}>
-                            <KPICard
-                            title="Purchase Price (IDR/Kg)" 
-                            value="530,102" positive={true} 
-                            state="3.47%" 
-                            info="Since last month" />
-                        </div>
+    let {kpis} = this.state;
+    if(kpis && kpis.length > 0){
+      let firstFiveKPI = kpis.slice(0,5);
+      let lastFiveKPI = kpis.slice(5);
+      return (
+        <>
+          <Container fluid>
+            <div className="row">
+              <div className="col-12">
+                <div className="header">
+                  <div className="header-body">
+                    <div className="kpis">
+                      <div className="row">
+                        {
+                          firstFiveKPI.map((kpi, index)=>{
+                            return (
+                              <div className="col" key={index}>
+                                <div className={classNames('kpi',{
+                                    'active' : this.state.selectedKPI === index
+                                  })} 
+                                  onClick={()=> this.onSelectKPI(index)}>
+                                    <KPICard
+                                    title={kpi.name}
+                                    value={kpi.header}
+                                    info={`Budget: ${kpi.footer}`} />
+                                </div>
+                              </div>
+                            );
+                          })
+                        }
                       </div>
-                      <div className="col-3 col-md-3 col-sm-6">
-                        <div className={classNames({'active' : this.state.selectedKPI === 1}, 'kpi')} 
-                          onClick={()=> this.onSelectKPI(1)}>
-                            <KPICard
-                            title="Purchase Price (IDR/Kg)" 
-                            value="530,102" positive={true} 
-                            state="3.47%" 
-                            info="Since last month" />
-                        </div>
-                      </div>
-                      <div className="col-3 col-md-3 col-sm-6">
-                        <div className={classNames({'active' : this.state.selectedKPI === 2}, 'kpi')} 
-                          onClick={()=> this.onSelectKPI(2)}>
-                            <KPICard
-                            title="Purchase Price (IDR/Kg)" 
-                            value="530,102" positive={true} 
-                            state="3.47%" 
-                            info="Since last month" />
-                        </div>
-                      </div>
-                      <div className="col-3 col-md-3 col-sm-6">
-                        <div className={classNames({'active' : this.state.selectedKPI === 3}, 'kpi')} 
-                          onClick={()=> this.onSelectKPI(3)}>
-                            <KPICard
-                            title="Purchase Price (IDR/Kg)" 
-                            value="530,102" positive={true} 
-                            state="3.47%" 
-                            info="Since last month" />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="row">
-                    <div className="col-3 col-md-3 col-sm-6">
-                        <div className={classNames({'active' : this.state.selectedKPI === 4}, 'kpi')} 
-                          onClick={()=> this.onSelectKPI(4)}>
-                            <KPICard
-                            title="Purchase Price (IDR/Kg)" 
-                            value="530,102" positive={true} 
-                            state="3.47%" 
-                            info="Since last month" />
-                        </div>
-                      </div>
-                      <div className="col-3 col-md-3 col-sm-6">
-                        <div className={classNames({'active' : this.state.selectedKPI === 5}, 'kpi')} 
-                          onClick={()=> this.onSelectKPI(5)}>
-                            <KPICard
-                            title="Purchase Price (IDR/Kg)" 
-                            value="530,102" positive={true} 
-                            state="3.47%" 
-                            info="Since last month" />
-                        </div>
-                      </div>
-                      <div className="col-3 col-md-3 col-sm-6">
-                        <div className={classNames({'active' : this.state.selectedKPI === 6}, 'kpi')} 
-                          onClick={()=> this.onSelectKPI(6)}>
-                            <KPICard
-                            title="Purchase Price (IDR/Kg)" 
-                            value="530,102" positive={true} 
-                            state="3.47%" 
-                            info="Since last month" />
-                        </div>
-                      </div>
-                      <div className="col-3 col-md-3 col-sm-6">
-                        <div className={classNames({'active' : this.state.selectedKPI === 7}, 'kpi')} 
-                          onClick={()=> this.onSelectKPI(7)}>
-                            <KPICard
-                            title="Purchase Price (IDR/Kg)" 
-                            value="530,102" positive={true} 
-                            state="3.47%" 
-                            info="Since last month" />
-                        </div>
+                      <div className="row">
+                        {
+                          lastFiveKPI.map((kpi, index)=>{
+                            return (
+                              <div className="col" key={index}>
+                                <div className={classNames('kpi',{
+                                    'active' : this.state.selectedKPI === index+5
+                                  })} 
+                                  onClick={()=> this.onSelectKPI(index+5)}>
+                                    <KPICard
+                                    title={kpi.name}
+                                    value={kpi.header}
+                                    info={`Budget: ${kpi.footer}`} />
+                                </div>
+                              </div>
+                            );
+                          })
+                        }
                       </div>
                     </div>
-                  </div>
-                </div>  
+                  </div>  
+                </div>
               </div>
             </div>
-          </div>
-        </Container>
-        {/* Page content */}
-        <Container fluid>
-          <Row>
-            <Col xl="12">
-              <DetailInformation/>
-            </Col>
-          </Row>
-        </Container>
-      </>
-    );
+          </Container>
+          {/* Page content */}
+          <Container fluid>
+            <Row>
+              <Col xl="12">
+                <DetailInformation/>
+              </Col>
+            </Row>
+          </Container>
+        </>
+        );
+    }else{
+      return <div>Server have problem, Please contact acministrator to check!!! </div>
+    }
   }
 }
 

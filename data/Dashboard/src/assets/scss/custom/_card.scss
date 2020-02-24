@@ -18,6 +18,9 @@
                     box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.18);
                     box-sizing: border-box;
                     border: 1px solid $primary-color-ffb;
+                    .card-value{
+                        color: $primary-color-ffb !important;
+                    }
                 }
             }
             .card-stats{
@@ -32,13 +35,14 @@
                     padding: .5rem;
                     .card-title{
                         font-size: .75rem;
-                        min-height: 2.25rem;//Please consider later
+                        color: #666;
                     }
                     .card-value{
-                        font-size: 1.25rem;
+                        font-size: 1.4rem;
                         font-weight: bold;
                         align-self: center!important;
                         flex-grow: 1;
+                        color: $text-black;
                     }
                     .card-state{
                         font-size: .75rem;
@@ -47,7 +51,7 @@
                     }
                     .card-info{
                         font-size: .7rem;
-                        color: #8898aa;
+                        color: #666;
                     }
                 }
             }

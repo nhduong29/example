@@ -177,3 +177,13 @@
         }
     }
 }
+
+@media (max-width: 768px){
+    .detail-info{
+        .card-header{
+            &>.row{
+                flex-direction: column;
+            }
+        }
+    }
+}
