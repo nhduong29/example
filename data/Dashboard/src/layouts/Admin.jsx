@@ -22,16 +22,23 @@ import Sidebar from "components/Sidebar/Sidebar.jsx";
 import Index from "views/Index.jsx";
 
 import routes from "routes.js";
+import axios  from 'axios';
+import { API_BASE_URL } from '../constants';
 
 class Admin extends React.Component {
   state = {
-    queryParam : {
-      "region" : [],
-      "mill" : [],
-      "supplier" : [],
-      "docode" : [],
-      "date" : new Date(),
-      "type" : "day"
+    kpis :[],
+    selectedKPI : 0,
+    barchart: {},
+    detailTable : {},
+    historyTable :{},
+    query : {
+      region: [],
+      mill: [],
+      supplierName: [],
+      doCode: [],
+      date :  new Date(),
+      type : 'daily'
     }
   }
   componentDidUpdate(e) {
@@ -67,15 +74,46 @@ class Admin extends React.Component {
     return "Brand";
   };
 
-  getFilterData = (data) =>{
-    console.log("getFilterData on Admin.jsx",data);
-    this.setState({
-      queryParam : [data]
-    })
-    console.log("queryParam on Admin.jsx",this.state.queryParam);
-    this.indexElement.current.updateKPIs();
+  getFilterData = async (query=[]) =>{
+    //get kpis
+    console.log(query)
+    this.getKPIsData(query);
   }
-  indexElement=React.createRef();
+
+  componentDidMount = async()=>{
+    this.getKPIsData(this.state.query);
+  }
+  getKPIsData =  async(query=[])=>{
+    let param = {
+      'region' : query.region || [],
+      'mill' : query.mill || [],
+      'supplierName' : query.supplier || [],
+      'doCode' : query.docode || [],
+      'date' : query.date || new Date(),
+    }
+    const API_PARAM = query.type || 'daily';
+    const kpisResult = await axios.post(`${API_BASE_URL}/card/${API_PARAM}`, param);
+    //const detailResult = await axios.post(`${API_BASE_URL}/card/detail`, param);
+    //const detailResult ={};
+    //console.log(detailResult.data)
+    this.setState({
+      query : param,
+      kpis : kpisResult.data || [],
+      //details :  detailResult.data || {}
+    })
+  }
+
+  callBackHandleSelectKPI= async(id, api)=>{
+    const detailTableResult = await axios.post(`${API_BASE_URL}${api.apiDetails}`, this.state.query);
+    const barchartResult = await axios.post(`${API_BASE_URL}${api.apiBar}`, this.state.query);
+    const historyTableResult = await axios.post(`${API_BASE_URL}${api.apiHistory}`, this.state.query);
+    this.setState({
+      selectedKPI : id,
+      detailTable :  detailTableResult.data || {},
+      barchart : barchartResult.data || {},
+      historyTable : historyTableResult.data ||{}
+    })
+  }
   render() {
     return (
       <>
@@ -96,13 +134,17 @@ class Admin extends React.Component {
           {/* <Switch>{this.getRoutes(routes)}</Switch> */}
           <Switch>
             <Route path='/admin/index'
-              render= {()=>(<Index ref={this.indexElement} query={this.state.queryParam}/>)}
+              render= {()=>(<Index 
+                kpis={this.state.kpis} 
+                query={this.state.query} 
+                selectedKPI={this.state.selectedKPI} 
+                detailTable={this.state.detailTable}
+                barchart = {this.state.barchart}
+                historyTable = {this.state.historyTable}
+                onSelectKPI={this.callBackHandleSelectKPI}
+                 />)}
               key={0}
             />
-            {/* <Route path='/admin/index1'
-              render= {()=>(<Index test={true}/>)}
-              key={1}
-            /> */}
           </Switch>
         </div>
       </>

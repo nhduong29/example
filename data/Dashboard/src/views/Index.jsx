@@ -17,22 +17,9 @@
 */
 import React from "react";
 // node.js library that concatenates classes (strings)
-import classnames from "classnames";
-// javascipt plugin for creating charts
 import Chart from "chart.js";
-// react plugin used to create charts
-import { Line, Bar } from "react-chartjs-2";
 // reactstrap components
 import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  NavItem,
-  NavLink,
-  Nav,
-  Progress,
-  Table,
   Container,
   Row,
   Col
@@ -42,8 +29,6 @@ import {
 import {
   chartOptions,
   parseOptions,
-  chartExample1,
-  chartExample2
 } from "variables/charts.jsx";
 
 import classNames from "classnames";
@@ -55,22 +40,12 @@ import { API_BASE_URL } from '../constants';
 class Index extends React.Component {
   state = {
     activeNav: 1,
-    selectedKPI : 1,
     chartExample1Data: "data1",
-    kpis:[]
   };
 
-  onSelectKPI = (id)=>{
-    console.log(id);
-    this.setState({
-      selectedKPI : id
-    })
-  }
-  updateKPIs= async()=>{
-    const result = await axios.post(`${API_BASE_URL}/allKPI`, this.props.query);
-    this.setState({
-      kpis : result.data || []
-    })
+  onSelectKPI = (id,api)=>{
+    console.log(id, api);
+    this.props.onSelectKPI(id, api);
   }
   toggleNavs = (e, index) => {
     e.preventDefault();
@@ -90,19 +65,11 @@ class Index extends React.Component {
     if (window.Chart) {
       parseOptions(Chart, chartOptions());
     }
-    console.log("index query componentWillMount: ",this.props.query);
-  }
-  componentDidMount= async()=>{
-    console.log("index query componentDidMount: ",this.props.query);
-    //call api to get all data of KPI card
-    const result = await axios.post(`${API_BASE_URL}/allKPI`, this.props.query);
-    this.setState({
-      kpis : result.data || []
-    })
-    console.log("kpis", this.state.kpis);
   }
   render() {
-    let {kpis} = this.state;
+    let {kpis, detailTable, selectedKPI, barchart, historyTable} = this.props;
+    console.log(kpis)
+
     if(kpis && kpis.length > 0){
       let firstFiveKPI = kpis.slice(0,5);
       let lastFiveKPI = kpis.slice(5);
@@ -120,11 +87,17 @@ class Index extends React.Component {
                             return (
                               <div className="col" key={index}>
                                 <div className={classNames('kpi',{
-                                    'active' : this.state.selectedKPI === index
+                                    'active' : selectedKPI === index
                                   })} 
-                                  onClick={()=> this.onSelectKPI(index)}>
+                                  onClick={()=> this.onSelectKPI(index,{
+                                    apiBar: kpi.apiBar,
+                                    apiDetails: kpi.apiDetails,
+                                    apiHistory : kpi.apiHistory
+                                  })}>
                                     <KPICard
                                     title={kpi.name}
+                                    position ={kpi.position}
+                                    state ={kpi.state}
                                     value={kpi.header}
                                     info={`Budget: ${kpi.footer}`} />
                                 </div>
@@ -139,11 +112,17 @@ class Index extends React.Component {
                             return (
                               <div className="col" key={index}>
                                 <div className={classNames('kpi',{
-                                    'active' : this.state.selectedKPI === index+5
+                                    'active' : selectedKPI === index+5
                                   })} 
-                                  onClick={()=> this.onSelectKPI(index+5)}>
+                                  onClick={()=> this.onSelectKPI(index+5,{
+                                    apiBar: kpi.apiBar,
+                                    apiDetails: kpi.apiDetails,
+                                    apiHistory : kpi.apiHistory
+                                  })}>
                                     <KPICard
                                     title={kpi.name}
+                                    position ={kpi.position}
+                                    state ={kpi.state}
                                     value={kpi.header}
                                     info={`Budget: ${kpi.footer}`} />
                                 </div>
@@ -162,7 +141,7 @@ class Index extends React.Component {
           <Container fluid>
             <Row>
               <Col xl="12">
-                <DetailInformation/>
+                <DetailInformation detailTable={detailTable} barchart = {barchart} historyTable = {historyTable}/>
               </Col>
             </Row>
           </Container>

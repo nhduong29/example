@@ -1,5 +1,5 @@
 import React from 'react';
-import { TabContent, TabPane, Nav, NavItem, NavLink, FormGroup,ButtonGroup,Button,
+import {FormGroup,ButtonGroup,Button,
     InputGroupAddon,
     InputGroupText,
     InputGroup} from 'reactstrap';
@@ -12,7 +12,7 @@ class DateFilter extends React.Component{
         super();
         this.state = {
             selectedDate: new Date(),
-            type : 'day'
+            type : 'daily'
         };
         this.isFocusDatePicker = false;
     }
@@ -44,13 +44,13 @@ class DateFilter extends React.Component{
             <div className="date-filter">
                 <ButtonGroup>
                     <Button color="primary" 
-                        onClick={() => this.conChangeType('day')} 
-                        active={this.state.type === 'day'}>
+                        onClick={() => this.conChangeType('daily')} 
+                        active={this.state.type === 'daily'}>
                         Daily
                     </Button>
                     <Button color="primary" className="mid"
-                        onClick={() => this.conChangeType('week')} 
-                        active={this.state.type === 'week'}>
+                        onClick={() => this.conChangeType('weekly')} 
+                        active={this.state.type === 'weekly'}>
                         Weekly
                     </Button>
                     <Button color="primary" 

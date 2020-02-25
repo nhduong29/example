@@ -14,7 +14,7 @@ class FilterContainer extends React.Component{
     
         this.state = {
             selectedDate : new Date(),
-            type:'day',
+            type:'daily',
             regionList : [],
             millList : [],
             supplierList : [],
@@ -215,7 +215,7 @@ class FilterContainer extends React.Component{
                 let data={
                     "region" : regionQuery,
                     "mill" : millQuery,
-                    "supplier" : supplierQuery,
+                    "supplierName" : supplierQuery,
                     "docode" : docodeQuery,
                     "date" : this.state.selectedDate,
                     "type" : this.state.type

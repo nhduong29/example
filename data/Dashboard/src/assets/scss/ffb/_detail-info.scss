@@ -21,6 +21,9 @@
         .card-body{
             .tab-content{
                 .tab-pane{
+                    .MuiTableCell-body{
+                        color: #fff;
+                    }
                     .MuiPaper-root{
                         box-shadow: none;
                         border: 1px solid #e6ecf1;
