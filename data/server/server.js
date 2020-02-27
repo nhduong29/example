@@ -142,65 +142,223 @@ app.post('/filter/docode', function (req, res) {
 
 
 
-app.post('/allKPI', function (req, res) {
+app.post('/card/daily', function (req, res) {
    res.writeHead(200, {'Content-Type': 'application/json'});
    var response = [
     {
         "name": "FFB Volume (MT)",
-        "header": "126",
-        "footer": "789"
+        "apiBar": "/ffb/daily_bar",
+        "apiDetails": "/ffb/daily_details",
+        "apiHistory": "/ffb/history",
+        "header": "858.54",
+        "footer": "0.00"
     },
     {
         "name": "OER (%)",
-        "header": "9655",
-        "footer": "123"
+        "apiBar": "/oer/daily_bar",
+        "apiDetails": "/oer/daily_details",
+        "apiHistory": "/oer/history",
+        "header": "19.17",
+        "footer": "0.00"
     },
     {
         "name": "KER (%)",
-        "header": "526",
-        "footer": "123"
+        "apiBar": "/ker/daily_bar",
+        "apiDetails": "/ker/daily_details",
+        "apiHistory": "/ker/history",
+        "header": "5.75",
+        "footer": "0.00"
     },
     {
         "name": "TBS Price (Rp/Kg)",
-        "header": "885",
-        "footer": "452"
+        "apiBar": "/tbsp/daily_bar",
+        "apiDetails": "/tbsp/daily_details",
+        "apiHistory": "/tbsp/history",
+        "header": "1,275.96",
+        "footer": "1,279.14"
     },
     {
         "name": "Process Margin (Rp/Kg)",
-        "header": "542",
-        "footer": "425"
+        "apiBar": "/pm/daily_bar",
+        "apiDetails": "/pm/daily_details",
+        "apiHistory": "/pm/history",
+        "header": "0.00",
+        "footer": "0.00"
     },
     {
         "name": "Sortasi (%)",
-        "header": "4536",
-        "footer": "452"
+        "apiBar": "/sortasi/daily_bar",
+        "apiDetails": "/sortasi/daily_details",
+        "apiHistory": "/sortasi/history",
+        "header": "7.94",
+        "footer": "8.07"
     },
     {
         "name": "Cangkang (%)",
-        "header": "45364",
-        "footer": "254"
+        "apiBar": "/ckg/daily_bar",
+        "apiDetails": "/ckg/daily_details",
+        "apiHistory": "/ckg/history",
+        "header": "0.00",
+        "footer": "0.00"
     },
     {
         "name": "CPO Price (Rp/Kg)",
-        "header": "869",
-        "footer": "85"
+        "apiBar": "/cpo/daily_bar",
+        "apiDetails": "/cpo/daily_details",
+        "apiHistory": "/cpo/history",
+        "header": "0.00",
+        "footer": "0.00"
     },
     {
         "name": "PK Price (Rp/Kg)",
-        "header": "526",
-        "footer": "125"
+        "apiBar": "/pk/daily_bar",
+        "apiDetails": "/pk/daily_details",
+        "apiHistory": "/pk/history",
+        "header": "0.00",
+        "footer": "0.00"
     },
     {
         "name": "PM + Cangkang (Rp/Kg)",
-        "header": "425",
-        "footer": "256"
+        "apiBar": "/pmckg/daily_bar",
+        "apiDetails": "/pmckg/daily_details",
+        "apiHistory": "/pmckg/history",
+        "header": "0.00",
+        "footer": "0.00"
     }
 ]
    res.end(JSON.stringify(response));
 })
 
+app.post('/ffb/daily_details', function (req, res) {
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    var response = [];
+   res.end(JSON.stringify(response));
+})
+
+app.post('/ffb/daily_bar', function (req, res) {
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    var response = {
+      labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      datasets: [
+        {
+          label: "Performance",
+          data: [0, 20, 5, 25, 10, 30, 15, 40, 40]
+        }
+      ]
+    };
+   res.end(JSON.stringify(response));
+})
+
+app.post('/ffb/history', function (req, res) {
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    var response = [];
+   res.end(JSON.stringify(response));
+})
 
 
+
+
+app.post('/card/weekly', function (req, res) {
+   res.writeHead(200, {'Content-Type': 'application/json'});
+   var response = [];
+   res.end(JSON.stringify(response));
+})
+
+app.post('/card/mtd', function (req, res) {
+   res.writeHead(200, {'Content-Type': 'application/json'});
+   var response = []
+   res.end(JSON.stringify(response));
+})
+
+
+app.post('/card/ytd', function (req, res) {
+   res.writeHead(200, {'Content-Type': 'application/json'});
+   var response = []
+   res.end(JSON.stringify(response));
+})
+
+app.post('/card/detail', function (req, res) {
+   res.writeHead(200, {'Content-Type': 'application/json'});
+   var response = {
+    chart : {},
+    table : {
+      columns : [
+        { title: 'Region', field: 'region', width : '130px' },
+        { title: 'Mill', field: 'mill', width : '130px' },
+        { title: 'Supplier Name', field: 'supplier', width : '180px' },
+        { title: '1', field: 'd1', type: 'numeric' },
+        { title: '2', field: 'd2', type: 'numeric'},
+        { title: '3', field: 'd3', type: 'numeric' },
+        { title: '4', field: 'd4',type: 'numeric' },
+        { title: '5', field: 'd5', type: 'numeric'},
+        { title: '6', field: 'd6', type: 'numeric' },
+        { title: '7', field: 'd7', type: 'numeric' },
+        { title: '8', field: 'd8', type: 'numeric'},
+        { title: '9', field: 'd9', type: 'numeric' },
+        { title: '10', field: 'd10',type: 'numeric' },
+        { title: '11', field: 'd11', type: 'numeric'},
+        { title: '12', field: 'd12', type: 'numeric' }
+      ],
+    data : [
+        {
+          id: 1,
+          region: 'RO-123',
+        },
+        {
+          id: 2,
+          mill: "PAN",
+          parentId: 1,
+        },
+        {
+            id: 3,
+            mill: "PGD",
+            parentId: 1,
+        },
+        {
+            id: 4,
+            supplier: "supplier 120",
+            parentId: 2,
+            d1:12, d2:54, d3:20, d4:23, d5:45, d6:145452, d7:112, d8:235, d9:52, d10:112, d11:1254, d12:65
+        },
+        {
+            id: 6,
+            supplier: "supplier 2",
+            parentId: 2,
+            d1:12, d2:54, d3:20, d4:23, d5:23, d6:34, d7:112, d8:235, d9:52, d10:112, d11:1254, d12:65
+        },
+        {
+            id: 7,
+            supplier: "supplier a",
+            parentId: 3,
+            d1:34, d2:879, d3:23423, d4:3463, d5:345, d6:56, d7:112, d8:235, d9:52, d10:112, d11:1254, d12:65
+        },
+        {
+            id: 8,
+            supplier: "supplier b",
+            parentId: 3,
+            d1:343, d2:343, d3:232, d4:23323, d5:232, d6:23, d7:112, d8:235, d9:52, d10:112, d11:1254, d12:65
+        },
+        {
+            id: 9,
+            region: 'RO-2',
+          },
+        {
+            id: 10,
+            mill: "PAN XYZ",
+            parentId: 9,
+        },
+        {
+            id: 11,
+            supplier: "supplier x",
+            parentId: 10,
+            d1:343, d2:343, d3:232, d4:23323, d5:232, d6:23, d7:112, d8:235, d9:52, d10:112, d11:1254, d12:65
+        },
+      ]
+    },
+    history : {}
+   }
+   res.end(JSON.stringify(response));
+})
 
 
 var server = app.listen(4000, function () {

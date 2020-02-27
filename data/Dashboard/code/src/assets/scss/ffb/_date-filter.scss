@@ -1,0 +1,45 @@
+.date-filter{
+    background: $bg-secondary;
+    border-radius: 5px;
+    .btn-group{
+        display:flex;
+        justify-content: space-between;
+        button{
+            display: block;
+            background-color: transparent;
+            border: none;
+            padding: 8px 10px;
+            flex: 1;
+            font-weight: 400;
+            &.active,&:focus{
+                background-color:  $active-color !important;
+            }
+        }
+    }
+    .day-select{
+        padding: 16px;
+        .form-group{
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+    }
+    .rdt{
+        input.form-control{
+            padding: 0.5rem;
+            height: auto;
+        }
+    }
+    .rdtPicker{
+        min-width: 290px !important;
+        .rdtMonths{
+            .rdtMonth{
+                color: #525f7f;
+            }
+        }
+        .rdtYears{
+            .rdtYear{
+                color: #525f7f;
+            }
+        }
+    }
+}
