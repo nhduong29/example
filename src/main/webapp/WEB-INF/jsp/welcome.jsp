@@ -54,7 +54,9 @@
 							    	<img src="<c:url value="/img/man.svg"/>" alt="your avatar" class="img-thumbnail rounded-circle" width="100">
 							    	<div class="decs">
 							    		<p class="name font-weight-bold">${user.name}</p>
-							    		<p class="email">${user.email}</p>		    		
+							    		<p class="email">GLOBALNET</p>
+							    		<p class="email">${user.email}</p>
+							    		<p class="email">ID00123456</p>		
 							    	</div>
 						    	</div>
 							</div>

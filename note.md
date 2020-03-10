@@ -1,0 +1,1 @@
+https://medium.com/@mrunali.jari207/ldap-authentication-using-spring-boot-openldap-cbcfe1c3f1e

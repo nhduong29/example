@@ -5,7 +5,6 @@ import _ from 'lodash';
 import axios  from 'axios';
 import { API_BASE_URL } from '../../constants';
 import DateFilter from 'components/DateFilter.jsx';
-import FilterAPI from '../../api/FilterAPI.js';
 //Duong
 
 
@@ -15,7 +14,7 @@ class FilterContainer extends React.Component{
     
         this.state = {
             selectedDate : new Date(),
-            type:'day',
+            type:'daily',
             regionList : [],
             millList : [],
             supplierList : [],
@@ -175,12 +174,25 @@ class FilterContainer extends React.Component{
         });
     }
 
+    mapDataToQuery = (array)=>{
+        if(array && array.length > 0){
+           return array.map((item) => {
+                return item.value;
+            })
+        }
+        return [];
+    }
+
     getQuery = (region =[], mill=[], supplier=[],docode=[]) =>{
+        let regionQuery = this.mapDataToQuery(region);
+        let millQuery = this.mapDataToQuery(mill);
+        let supplierQuery = this.mapDataToQuery(supplier);
+        let docodeQuery =  this.mapDataToQuery(docode);
         return {
-            "region":region,
-            "mill":mill,
-            "supplierName":supplier,
-            "doCode":docode
+            "region":regionQuery,
+            "mill":millQuery,
+            "supplierName":supplierQuery,
+            "doCode":docodeQuery
         }
     }
 
@@ -196,13 +208,17 @@ class FilterContainer extends React.Component{
         timer = setInterval(() => {
             if(this.state.isDisabledButton === false){
                 clearInterval(timer);
-                console.log("filterData",this.state.filterData);
-                console.log("selectedDate",this.state.selectedDate);
-                console.log("type",this.state.type);
+                let regionQuery = this.mapDataToQuery(this.state.filterData.selectedRegion);
+                let millQuery = this.mapDataToQuery(this.state.filterData.selectedMill);
+                let supplierQuery = this.mapDataToQuery(this.state.filterData.selectedSupplier);
+                let docodeQuery =  this.mapDataToQuery(this.state.filterData.selectedDO);
                 let data={
-                    filterData : this.state.filterData,
-                    selectedDate : this.state.selectedDate,
-                    type : this.state.type
+                    "region" : regionQuery,
+                    "mill" : millQuery,
+                    "supplierName" : supplierQuery,
+                    "docode" : docodeQuery,
+                    "date" : this.state.selectedDate,
+                    "type" : this.state.type
                 }
                 this.props.onFilter(data);
             }else{
